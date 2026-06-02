@@ -14,18 +14,22 @@
 }
 
 .contact-btn {
-    position: fixed;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     width: 169px;
     height: 52px;
-    padding-top: 15px;
-    padding-right: 30px;
-    padding-bottom: 15px;
-    padding-left: 30px;
-    margin-top: 117px;
-    margin-left: -50px;
+    left: -50px;
+    text-align: center;
+    top: 117px;
+    padding: 10px;
     transform: rotate(-90deg);
     border: solid 1px var(--mint-color);
     color: var(--orange-color);
+    font-size: 18px;
+    font-weight: 500;
+    font-style: medium;
+    line-height: 120%;
     text-decoration: none;
     cursor: pointer;
     transition: ease-in-out 0.3s;
@@ -54,9 +58,9 @@
 }
 
 .arrow-icon {
-    position: fixed;
-    margin-top: 256px;
-    margin-left: 647px;
+    position: relative;
+    top: 156px;
+    left: 647px;
     width: 22px;
     height: 50px;
     transform: rotate(180deg);
@@ -69,8 +73,7 @@
 }
 
 .hero-image {
-    position: fixed;
     width: 539px;
     height: 554px;
-    margin-left: 796px;
+    left: 796px;
 }

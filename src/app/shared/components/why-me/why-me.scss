@@ -1,0 +1,43 @@
+.why-me-style {
+    display: flex;
+    width: 1224px fixed;
+    height: 452px;
+    top: 754px;
+    left: 105px;
+    padding: 2px;
+
+}
+
+.profile-imageg {
+    width: 490px fixed;
+    height: 452px fixed;
+    margin: 10px;
+}
+
+.why-me-profileImage {
+    width: 488px;
+    height: 452px;
+}
+
+.why-me-text {
+    width: 729px;
+    height: 452px;
+
+    h2 {
+        font-weight: 500;
+        font-size: 54px;
+        font-style: medium;
+        line-height: 120%;
+        text-align: right;
+        color: var(--orange-color);
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        font-style: regular;
+        line-height: 120%;
+        text-align: right;
+        color: var(--mint-color);
+    }
+}

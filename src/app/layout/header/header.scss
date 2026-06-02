@@ -14,10 +14,24 @@
     display: flex;
     gap: 20px;
     align-items: center;
+
+    p {
+        font-weight: 400;
+        font-style: normal;
+        font-size: 48px;
+        line-height: 100%;
+        text-transform: uppercase;
+        letter-spacing: 5%;
+    }
 }
 
 .nav-link {
     color: var(--orange-color);
+    font-weight: 500;
+    font-style: medium;
+    font-size: 22px;
+    line-height: 120%;
+    text-align: center;
     text-decoration: none;
     cursor: pointer;
 
@@ -30,6 +44,7 @@
     display: flex;
     gap: 8px;
     align-items: center;
+    font-style: bold;
 }
 
 .lang-button {
@@ -39,8 +54,15 @@
     cursor: pointer;
     text-decoration: none;
 
+    h6 {
+        font-weight: 700;
+        font-style: bold;
+        font-size: 18px;
+        line-height: 140%;
+        letter-spacing: 0%;
+    }
+
     &:hover {
         color: var(--mint-color);
     }
 }
-
