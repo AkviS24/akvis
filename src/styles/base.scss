@@ -1,4 +1,15 @@
 :root {
     --orange-color: #E15544;
     --mint-color: #02F4BF;
+
+    --container-max-width: 1440px;
+    --container-padding: min(140px, 10vw);
+}
+
+.content-container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+    box-sizing: border-box;
 }

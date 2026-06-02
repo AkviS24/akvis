@@ -1,5 +1,46 @@
+:host {
+    display: block;
+}
+
 .header-style {
     display: flex;
     justify-content: space-between;
     color: var(--orange-color);
+    padding-top: 24px;
+    padding-bottom: 24px;
 }
+
+.nav-bar {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--orange-color);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--mint-color);
+    }
+}
+
+.lang-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.lang-button {
+    color: var(--orange-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--mint-color);
+    }
+}
+
