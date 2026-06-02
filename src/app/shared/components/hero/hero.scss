@@ -1,0 +1,41 @@
+.hero-style {
+    position: relative;
+    width: 1337px;
+    height: 554px;
+    margin-top: 2px;
+    left: -53px;
+    display: flex;
+    border: solid 1px black;
+}
+
+.hero-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-btn {
+    position: fixed;
+    width: 169px;
+    height: 52px;
+    padding-top: 15px;
+    padding-right: 30px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    margin-top: 117px;
+    transform: rotate(-90deg);
+    border: solid 1px var(--mint-color);
+    color: var(--orange-color);
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+
+    &:hover {
+        border: solid 1px var(--orange-color);
+    }
+}
+
+.hero-image {
+    width: 539px;
+    height: 554px;
+    margin-left: 796px;
+}
