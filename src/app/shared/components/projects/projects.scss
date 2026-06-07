@@ -116,7 +116,7 @@
                         letter-spacing: 0%;
                     }
 
-                    &.project-button-container {
+                    .project-button-container {
                         display: flex;
                         flex-direction: row;
                         gap: 24px;
@@ -124,7 +124,12 @@
                         height: 52px;
                         padding-right: 192px;
 
-                        &.git-hub-button {
+                        .git-hub-button {
+                            cursor: pointer;
+                            appearance: none;
+                            background-color: transparent;
+                            border: solid 1px var(--mint-color);
+                            color: var(--orange-color);
                             width: 125px;
                             height: 52px;
                             padding-top: 15px;
@@ -132,12 +137,7 @@
                             padding-bottom: 15px;
                             padding-left: 30px;
                             gap: 10px;
-                            border-width: 1px;
-                            color: var(--orange-color);
-                            background: none;
-                            border: none;
-                            cursor: pointer;
-                            text-decoration: none;
+                            
                         }
                     }
                 }
