@@ -1,0 +1,35 @@
+.contact-style {
+    width: 1015px;
+    height: 162px;
+    top: 3660px;
+    left: 132px;
+
+    .contact-headline {
+        width: 425.05px;
+        height: 72.21px;
+        left: -3px;
+        display: flex;
+
+        h2 {
+            width: 330px;
+            height: 60px;
+            color: var(--orange-color);
+            font-weight: 500;
+            font-style: medium;
+            font-size: 54px;
+            line-height: 120%;
+            letter-spacing: 0%;
+        }
+
+        img {
+            width: 42.75px;
+            height: 60.6px;
+            top: 18px;
+            left: 354px;
+            border-width: 3px;
+            transform: rotate(deg -78.23);
+            object-fit: inherit;
+            object-position: center;
+        }
+    }
+}

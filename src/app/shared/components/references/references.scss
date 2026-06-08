@@ -1,0 +1,87 @@
+.reference-style {
+    display: flex;
+    flex-direction: column;
+    width: 1440px;
+    height: 307px;
+    top: 3249px;
+    left: 129px;
+    margin-top: 32px;
+
+    .reference-headline {
+        color: var(--orange-color);
+        font-weight: 700;
+        font-style: bold;
+        font-size: 24px;
+        line-height: 120%;
+        text-align: left;
+        width: 822px;
+        height: 29px;
+    }
+
+    .references-container {
+        display: flex;
+        flex-direction: row;
+        width: 1103px;
+        height: 246px;
+        gap: 32px;
+        margin-top: 32px;
+
+        .reference-arrow {
+            width: 38.46px;
+            height: 97.07px;
+            transform: rotate(deg 36.93);
+            border-width: 3px;
+            margin-left: 32px;
+        }
+
+        .reference {
+            width: 297px;
+            height: 246px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+
+            .reference-author {
+                display: flex;
+                flex-direction: column;
+                width: 297px;
+                height: 53px;
+                gap: 8px;
+
+                h4 {
+                    color: var(--orange-color);
+                    font-weight: 700;
+                    font-style: bold;
+                    font-size: 24px;
+                    line-height: 120%;
+                    letter-spacing: 0%;
+                    text-align: left;
+                }
+
+                p {
+                    color: var(--mint-color);
+                    font-weight: 400;
+                    font-style: normal;
+                    font-size: 18px;
+                    line-height: 140%;
+                    letter-spacing: 0%;
+                    text-align: left;
+                }
+            }
+
+            p {
+                width: 297px;
+                height: 161px;
+                color: var(--mint-color);
+                font-weight: 400;
+                font-style: normal;
+                font-size: 18px;
+                line-height: 120%;
+                letter-spacing: 0%;
+                text-align: left;
+            }
+        }
+    }
+}
+
+
