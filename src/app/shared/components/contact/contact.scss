@@ -3,6 +3,7 @@
     height: 162px;
     top: 3660px;
     left: 132px;
+    border: solid 1px red;
 
     .contact-headline {
         width: 425.05px;
@@ -30,6 +31,34 @@
             transform: rotate(deg -78.23);
             object-fit: inherit;
             object-position: center;
+        }
+    }
+
+    .contact-infos {
+        display: flex;
+        gap: 32px;
+
+        .contact-text {
+            width: 504px;
+            height: 73px;
+            padding-left: 2px;
+
+            p {
+                color: var(--mint-color);
+                font-weight: 400;
+                font-style: normal;
+                font-size: 18px;
+                line-height: 120%;
+                letter-spacing: 0%;
+                text-align: justify;
+            }
+        }
+
+        .contact-email {
+            width: 412px;
+            height: 30px;
+            left: 555px;
+            border: solid 1px red;
         }
     }
 }
