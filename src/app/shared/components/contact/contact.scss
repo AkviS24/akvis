@@ -3,7 +3,6 @@
     height: 162px;
     top: 3660px;
     left: 132px;
-    border: solid 1px red;
 
     .contact-headline {
         width: 425.05px;
@@ -54,11 +53,104 @@
             }
         }
 
-        .contact-email {
-            width: 412px;
-            height: 30px;
-            left: 555px;
-            border: solid 1px red;
+        .contact-datas {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .contact-email {
+                width: 412px;
+                height: 30px;
+                top: 85px;
+                left: 555px;
+                display: flex;
+                gap: 20px;
+                cursor: pointer;
+
+                .email-icon {
+                    width: 28.4px;
+                    height: 30px;
+                    background-image: url('../../../../../public/img/icon_email.png');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+
+                .email-text {
+                    width: 366px;
+                    height: 27px;
+                    top: 3px;
+                    left: 46px;
+                    color: var(--mint-color);
+                    font-weight: 500;
+                    font-style: normal;
+                    font-size: 20px;
+                    line-height: 120%;
+                    letter-spacing: 0%;
+                    text-decoration: none;
+                }
+
+                &:hover {
+                    .email-icon {
+                        background-image: url('../../../../../public/img/icon_email_green.png');
+                    }
+                }
+            }
+
+            .contact-phone {
+                display: flex;
+                gap: 20px;
+                width: 379px;
+                height: 33px;
+                top: 129px;
+                left: 557px;
+                cursor: pointer;
+
+                .phone-icon {
+                    width: 26.25px;
+                    height: 30.94px;
+                    background-image: url('../../../../../public/img/phone_red.png');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+
+                .phone-text {
+                    width: 274px;
+                    height: 26px;
+                    top: 6px;
+                    color: var(--mint-color);
+                    font-weight: 500;
+                    font-style: medium;
+                    font-size: 20px;
+                    line-height: 120%;
+                    letter-spacing: 0%;
+                    text-decoration: none; 
+                }
+
+                &:hover {
+                    .phone-icon {
+                        background-image: url('../../../../../public/img/phone_green.png');
+                    }
+                }
+            }
+        }
+    }
+
+    .contact-arrow-btn {
+        width: 22px;
+        height: 50px;
+        transform: rotate(deg 180);
+        background-image: url('../../../../../public/img/Arrow_up_red.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            background-image: url('../../../../../public/img/Arrow_up_green.png');
+            border: solid 1px var(--mint-color);
         }
     }
 }
