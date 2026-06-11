@@ -209,12 +209,20 @@
             }
         }
 
-        input, textarea {
+        input,
+        textarea {
             background-color: rgba(0, 0, 0, 0);
             border: none;
             outline: none;
             -webkit-appearance: none;
             appearance: none;
+            color: var(--mint-color);
+            padding: 3px;
+
+            &::placeholder {
+                color: var(--mint-color);
+                opacity: 0.6;
+            }
         }
     }
 }
@@ -225,6 +233,8 @@
     top: 4022px;
     left: 130.5px;
     margin-top: 22px;
+    display: flex;
+    align-items: center;
 
     .policy-checked-area {
         display: flex;
@@ -326,5 +336,20 @@
                 text-align: left;
             }
         }
+    }
+
+    .submit-btn {
+        width: 104px;
+        height: 52px;
+        border: solid 1px #827B7B;
+        color: #827B7B;
+        top: 22px;
+        left: 1081px;
+        padding: 15px 30px 15px 30px;
+        margin: 10px;
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: rgba(0, 0, 0, 0);
     }
 }

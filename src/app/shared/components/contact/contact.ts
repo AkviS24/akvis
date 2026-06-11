@@ -11,9 +11,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class Contact {
   contactForm: FormGroup;
-  hideH5Name = false;
-  hideH5Email = false;
-  hideH5Message = false;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.contactForm = this.fb.group({
@@ -22,18 +19,6 @@ export class Contact {
       message: ['', Validators.required],
       privacy: [false, Validators.requiredTrue]
     });
-  }
-
-  onOutsideClick() {
-    if (!this.contactForm.get('name')?.value) {
-      this.hideH5Name = false;
-    }
-    if (!this.contactForm.get('email')?.value) {
-      this.hideH5Email = false;
-    }
-    if (!this.contactForm.get('message')?.value) {
-      this.hideH5Message = false;
-    }
   }
 
   onSubmit() {
@@ -45,9 +30,6 @@ export class Contact {
           next: (response) => {
             alert('Vielen Dank! Deine Nachricht wurde gesendet.');
             this.contactForm.reset();
-            this.hideH5Name = false;
-            this.hideH5Email = false;
-            this.hideH5Message = false;
           },
           error: (error) => {
             alert('Fehler beim Senden. Bitte versuche es noch einmal.');
