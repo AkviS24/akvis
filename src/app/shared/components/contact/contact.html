@@ -27,6 +27,9 @@
             <article class="contact-form-left">
                 <div class="contact-form-left-container" (click)="$event.stopPropagation()">
                     <input type="text" formControlName="name" class="contact-form-left-container" placeholder="Name">
+                    @if(contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['name']) {
+                    <span class="error-msg">Please enter a Name</span>
+                    }
                 </div>
                 <div class="contact-form-left-container" (click)="$event.stopPropagation()">
                     <input type="email" formControlName="email" class="contact-form-left-container"
@@ -39,6 +42,9 @@
             <article class="contact-form-right" (click)="$event.stopPropagation()">
                 <textarea formControlName="message" class="contact-form-right" rows="4"
                     placeholder="Message"></textarea>
+                    @if(contactForm.get('message')?.touched && contactForm.get('message')?.errors?.['message']) {
+                    <span class="error-msg">You cannot send a empty mail.</span>
+                    }
             </article>
         </section>
         <section class="contact-privacy-police">

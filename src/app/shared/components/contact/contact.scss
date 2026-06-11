@@ -173,18 +173,8 @@
                 height: 56px;
                 border: solid 1.5px rgba(2, 244, 191, 0.6);
 
-                h5 {
-                    width: 108.98px;
-                    height: 25.45px;
-                    margin-top: 15.27px;
-                    margin-left: 13.34px;
-                    opacity: 0.6;
-                    color: var(--mint-color);
-                    font-weight: 400;
-                    font-style: normal;
-                    font-size: 18px;
-                    line-height: 140%;
-                    letter-spacing: 0%;
+                .error-msg {
+                    color: var(--orange-color);
                 }
             }
         }
@@ -193,21 +183,6 @@
             width: 637px;
             height: 144px;
             border: solid 1.5px rgba(2, 244, 191, 0.6);
-            cursor: pointer;
-
-            h5 {
-                width: 192.13px;
-                height: 25.18px;
-                opacity: 0.6;
-                color: var(--mint-color);
-                margin-top: 11.46px;
-                margin-left: 17.74px;
-                font-weight: 400;
-                font-style: normal;
-                font-size: 18px;
-                line-height: 140%;
-                letter-spacing: 0%;
-            }
         }
 
         input,
@@ -219,6 +194,7 @@
             appearance: none;
             color: var(--mint-color);
             padding: 3px;
+            cursor: pointer;
 
             &::placeholder {
                 color: var(--mint-color);
