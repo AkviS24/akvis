@@ -193,11 +193,11 @@
             width: 978px;
             height: 27px;
             left: -3px;
-            gap: 8px;
 
             .policy-text-frame {
                 width: 706px;
                 height: 27px;
+                display: flex;
 
                 .checkbox-container {
                     width: 24px;
@@ -238,6 +238,38 @@
                                 display: block;
                                 transform: scale(1);
                             }
+                        }
+                    }
+                }
+
+                .checkbox-first-text {
+                    width: 110px;
+                    height: 17px;
+                    font-weight: 400;
+                    font-style: normal;
+                    font-size: 14px;
+                    line-height: 120%;
+                    letter-spacing: 0%;
+                    color: var(--mint-color);
+                }
+
+                .privacy-policy-text-web {
+                    width: 126px;
+                    height: 27px;
+
+                    p {
+                        color: #a82516;
+                        font-weight: 400;
+                        font-style: normal;
+                        font-size: 14px;
+                        line-height: 120%;
+                        letter-spacing: 0%;
+                        text-decoration: none;
+                        cursor: pointer;
+
+                        &:hover {
+                            color: var(--orange-color);
+                            text-decoration: underline;
                         }
                     }
                 }
