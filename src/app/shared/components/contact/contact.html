@@ -20,30 +20,50 @@
         </section>
         <div class="contact-arrow-btn"></div>
     </section>
-    <section class="contact-form">
-        <article class="contact-form-left">
-            <div class="contact-form-left-container">
-
-            </div>
-            <div class="contact-form-left-container">
-
-            </div>
-        </article>
-        <article class="contact-form-right">
-
-        </article>
-    </section>
-    <section class="contact-privacy-police">
-        <article class="policy-checked-area">
-            <div class="policy-text-frame">
-                <label class="checkbox-container">
-                    <input type="checkbox">
-                </label>
-                <p class="checkbox-first-text">I´ve read the</p>
-                <div class="privacy-policy-text-web">
-                    <p>privacy policy</p>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <section class="contact-form">
+            <article class="contact-form-left">
+                <div class="contact-form-left-container" (click)="hideH5Name = true; $event.stopPropagation()">
+                    @if(!hideH5Name) {
+                    <h5>Your Name</h5>
+                    }
+                    <input type="text" formControlName="name" class="contact-form-left-container">
                 </div>
-            </div>
-        </article>
-    </section>
+                <div class="contact-form-left-container" (click)="hideH5Email = true; $event.stopPropagation()">
+                    @if(!hideH5Email) {
+                    <h5>Your Email</h5>
+                    }
+                    <input type="email" formControlName="email" class="contact-form-left-container">
+                    @if(contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['email']) {
+                    <span class="error-msg">Please enter a valid email address.</span>
+                    }
+                </div>
+            </article>
+            <article class="contact-form-right" (click)="hideH5Message = true; $event.stopPropagation()">
+                <textarea formControlName="message" class="contact-form-right" rows="4">
+                    @if(!hideH5Message) {
+                <h5>Your Message</h5>
+                }
+                </textarea>
+            </article>
+        </section>
+        <section class="contact-privacy-police">
+            <article class="policy-checked-area">
+                <div class="policy-text-frame">
+                    <label class="checkbox-container" (click)="$event.stopPropagation()">
+                        <input type="checkbox" formControlName="privacy">
+                    </label>
+                    <p class="checkbox-first-text">I´ve read the</p>
+                    <div class="privacy-policy-text-web">
+                        <p>privacy policy</p>
+                    </div>
+                    <p class="checkbox-second-text">and agree to the processing of my data as outlined.</p>
+                </div>
+            </article>
+            <button type="submit" [disabled]="contactForm.invalid" class="submit-btn">
+                Send Message
+            </button>
+        </section>
+    </form>
+
 </section>
