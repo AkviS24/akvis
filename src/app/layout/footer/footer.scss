@@ -1,23 +1,162 @@
-:host {
-    display: block;
+.footer-style {
+    // max-width: 1439px;
+    height: 81px;
+    display: flex;
+    align-items: center;
+    gap: 305px;
+    margin-top: 94px;
+
+    .footer-logo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--orange-color);
+        gap: 9px;
+
+        .footer-logo {
+            width: 110px;
+            height: 51px;
+            border-width: 1px;
+            text-align: center;
+
+            .logo {
+                display: flex;
+                justify-content: center;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 54px;
+                line-height: 100%;
+                letter-spacing: 5%;
+                transform: to-upper-case($string: "")
+            }
+
+            .slogan {
+                display: flex;
+                justify-content: center;
+                font-weight: 500;
+                font-style: medium;
+                font-size: 12px;
+                line-height: 100%;
+                letter-spacing: 0%;
+            }
+        }
+    }
+
+    .footer-copyright-container {
+        width: 291px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        color: var(--orange-color);
+
+        p {
+            font-weight: 400;
+            font-style: normal;
+            font-size: 23px;
+            line-height: 120%;
+            letter-spacing: 0%;
+            text-align: center;
+        }
+    }
+
+    .footer-socialMedia-container {
+        width: 154px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+
+        .social-icon-container {
+            width: 154px;
+            height: 38px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .social-icon {
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+            }
+
+            .github-icon {
+                background: url('../../../../public/img/github_red.png');
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+
+                &:hover {
+                    background: url('../../../../public/img/github_green.png');
+                }
+            }
+
+            .email-icon {
+                background: url('../../../../public/img/email_red.png');
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+
+                &:hover {
+                    background: url('../../../../public/img/email_green.png');
+                }
+            }
+
+            .linkedIn-icon {
+                background: url('../../../../public/img/linkedIn_red.png');
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+
+                &:hover {
+                    background: url('../../../../public/img/linkedIn_green.png');
+                }
+            }
+        }
+    }
 }
 
-.footer-style {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    width: 1439px;
-    height: 81px;
-    left: 0;
-    right: 0;
-    gap: 16px;
-    padding-bottom: 65px;
-    padding-top: 65px;
-    color: var(--mint-color);
-    border: solid 1px red;
-    margin: 0 auto;
-    max-width: 1440px;
-    gap: 305px;
-    padding-right: 108px;
-    padding-left: 121px;
-}
+.footer-links-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 261px;
+        height: 30px;
+        gap: 16px;
+        text-align: center;
+
+        a {
+            color: var(--orange-color);
+            cursor: pointer;
+            text-decoration: none;
+
+            &:hover {
+                color: var(--mint-color);
+            }
+        }
+
+        .footer-link-1 {
+            width: 121px;
+            height: 30px;
+            padding: 5px 10px 5px 10px;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 14px;
+            line-height: 120%;
+            letter-spacing: 0%;
+        }
+
+        .footer-link-2 {
+            width: 124px;
+            height: 30px;
+            padding-top: 5px;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 14px;
+            line-height: 120%;
+            letter-spacing: 0%;
+            text-align: center;
+        }
+    }
