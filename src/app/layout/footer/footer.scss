@@ -1,9 +1,23 @@
+:host {
+    display: block;
+}
+
 .footer-style {
+    display: flex;
     position: fixed;
+    bottom: 0;
     width: 1439px;
-    height: 196px;
-    top: 4184px;
-    left: 1px;
-    margin-bottom: 65px;
-    padding: 16px;
+    height: 81px;
+    left: 0;
+    right: 0;
+    gap: 16px;
+    padding-bottom: 65px;
+    padding-top: 65px;
+    color: var(--mint-color);
+    border: solid 1px red;
+    margin: 0 auto;
+    max-width: 1440px;
+    gap: 305px;
+    padding-right: 108px;
+    padding-left: 121px;
 }
