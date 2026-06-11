@@ -1,11 +1,13 @@
 <section class="hero-style">
     <section class="hero-left">
         <div class="hero-buttons">
-            <a href="#" class="contact-btn">CONTACT ME</a>
-            <svg xmlns="http://w3.org" viewBox="0 0 11 25" class="arrow-icon">
+            <a [routerLink]="['']" fragment="contact-component-anchor" class="contact-btn" (click)="scrollToElement('contact-component-anchor', $event)">CONTACT ME</a>
+            <a [routerLink]="['']" fragment="whyMe-component-anchor" (click)="scrollToElement('whyMe-component-anchor', $event)">
+                <svg xmlns="http://w3.org" viewBox="0 0 11 25" class="arrow-icon">
                 <path d="M5.5 2v21M1.5 6l4-4 4 4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     fill="none" />
             </svg>
+            </a>
         </div>
         <div class="hero-text">
             <h2>FRONTEND DEVELOPER</h2>

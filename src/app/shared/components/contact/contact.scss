@@ -138,9 +138,10 @@
     }
 
     .contact-arrow-btn {
+        display: inline-block;
         width: 22px;
         height: 50px;
-        transform: rotate(deg 180);
+        transform: rotate(0deg);
         background-image: url('../../../../../public/img/Arrow_up_red.png');
         background-position: center;
         background-repeat: no-repeat;
@@ -150,7 +151,7 @@
 
         &:hover {
             background-image: url('../../../../../public/img/Arrow_up_green.png');
-            border: solid 1px var(--mint-color);
+            outline: solid 1px var(--mint-color);
         }
     }
 
