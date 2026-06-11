@@ -125,7 +125,7 @@
                     font-size: 20px;
                     line-height: 120%;
                     letter-spacing: 0%;
-                    text-decoration: none; 
+                    text-decoration: none;
                 }
 
                 &:hover {
@@ -161,6 +161,87 @@
         left: 131px;
         display: flex;
         gap: 40px;
-        border: solid 1px red;
+
+        .contact-form-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .contact-form-left-container {
+                width: 507px;
+                height: 56px;
+                border: solid 1.5px var(--mint-color);
+            }
+        }
+
+        .contact-form-right {
+            width: 637px;
+            height: 144px;
+            border: solid 1.5px var(--mint-color);
+        }
+    }
+
+    .contact-privacy-police {
+        width: 1185px;
+        height: 74px;
+        top: 4022px;
+        left: 130.5px;
+        margin-top: 22px;
+
+        .policy-checked-area {
+            display: flex;
+            width: 978px;
+            height: 27px;
+            left: -3px;
+            gap: 8px;
+
+            .policy-text-frame {
+                width: 706px;
+                height: 27px;
+
+                .checkbox-container {
+                    width: 24px;
+                    height: 24px;
+
+                    input {
+                        width: 18px;
+                        height: 18px;
+                        border: solid 1px var(--orange-color);
+                        cursor: pointer;
+                        -webkit-appearance: none;
+                        appearance: none;
+                        place-content: center;
+                        transition: all 0.3s ease-in-out;
+                        outline: none;
+                        display: grid;
+                        
+
+                        &:hover {
+                            background-color: var(--mint-color);
+                        }
+
+                        &::before {
+                            transform: scale(0);
+                            transition: 120ms transform ease-in-out;
+                            font-size: 14px;
+                            font-weight: bold;
+                            color: var(--orange-color) !important;
+                            content: "✓";
+                            display: none;
+                        }
+
+                        &:checked {
+                            background-color: var(--mint-color);
+                            
+
+                            &::before {
+                                display: block;
+                                transform: scale(1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
