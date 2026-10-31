@@ -9,12 +9,12 @@ export const TRANSLATIONS = {
             contact: 'Contact',
         },
         hero: {
-            job: 'FRONTEND DEVELOPER',
+            job: 'SOFTWARE DEVELOPER',
             contactBtn: 'CONTACT ME',
         },
         whyMe: {
             headline: 'Why me',
-            about: 'Write some information about yourself that is IT related. Why are you passionate about coding? Highlight your motivation for professional growth and continuous learning. Emphasise your strong problem-solving skills and passion for coding.',
+            about: "For me, programming means turning ideas into something tangible. What started with a few personal experiments has grown into a genuine passion for software development. I enjoy exploring new technologies, working through problems and learning by building my own projects. I'm interested in the whole process – from thoughtful user interfaces to APIs and databases.",
             iAm: 'I am',
             located: 'located in Hachenburg, Westerwald-Kreis',
             relocateLine1: 'open to',
@@ -66,12 +66,12 @@ export const TRANSLATIONS = {
             contact: 'Kontakt',
         },
         hero: {
-            job: 'FRONTEND DEVELOPER',
+            job: 'SOFTWARE DEVELOPER',
             contactBtn: 'KONTAKT',
         },
         whyMe: {
             headline: 'Warum ich',
-            about: 'Schreibe etwas über dich mit IT-Bezug. Warum begeisterst du dich fürs Programmieren? Betone deine Motivation für berufliches Wachstum und kontinuierliches Lernen. Hebe deine ausgeprägte Problemlösungskompetenz und deine Leidenschaft fürs Coden hervor.',
+            about: 'Programmieren heißt für mich, Ideen in etwas Greifbares zu verwandeln. Was mit ersten eigenen Experimenten begann, ist zu einer echten Begeisterung für Softwareentwicklung geworden. Ich probiere gerne neue Technologien aus, tüftle an Lösungen und lerne am liebsten, indem ich eigene Projekte umsetze. Dabei interessiert mich das ganze Spektrum – von durchdachten Benutzeroberflächen bis hin zu APIs und Datenbanken.',
             iAm: 'Ich bin',
             located: 'wohnhaft in Hachenburg, Westerwald-Kreis',
             relocateLine1: 'bereit für',
