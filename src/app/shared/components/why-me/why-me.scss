@@ -139,6 +139,14 @@
             align-items: center;
             gap: 16px;
 
+            .suitcase-icon {
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: rotate(8deg);
+                }
+            }
+
             img {
                 width: 30px;
                 height: 44px;
