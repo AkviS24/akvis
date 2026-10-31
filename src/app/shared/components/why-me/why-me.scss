@@ -179,6 +179,7 @@
 
                 &::after {
                     position: absolute;
+                    z-index: 2;
                     top: -5px;
                     left: -5px;
                     width: 16px;
@@ -188,12 +189,15 @@
                     border-radius: 100% 0 0 0;
                     content: "";
                     opacity: 0;
+                    pointer-events: none;
                     transform: scale(0.85);
                     transform-origin: bottom right;
                     transition: opacity 0.3s ease, transform 0.3s ease;
                 }
 
                 .remote-icon {
+                    position: relative;
+                    z-index: 1;
                     display: block;
                     width: 54px;
                     height: 47px;
