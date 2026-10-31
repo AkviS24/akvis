@@ -14,7 +14,7 @@ export const TRANSLATIONS = {
         },
         whyMe: {
             headline: 'Why me',
-            about: "For me, programming means turning ideas into something tangible. What started with a few personal experiments has grown into a genuine passion for software development. I enjoy exploring new technologies, working through problems and learning by building my own projects. I'm interested in the whole process – from thoughtful user interfaces to APIs and databases.",
+            about: "Programming means turning ideas into something real. Early experiments grew into a passion for software development. I enjoy exploring technologies, solving problems and learning through my own projects – from interfaces to APIs and databases.",
             iAm: 'I am',
             located: 'located in Hachenburg, Westerwald-Kreis',
             relocateLine1: 'open to',
@@ -71,7 +71,7 @@ export const TRANSLATIONS = {
         },
         whyMe: {
             headline: 'Warum ich',
-            about: 'Programmieren heißt für mich, Ideen in etwas Greifbares zu verwandeln. Was mit ersten eigenen Experimenten begann, ist zu einer echten Begeisterung für Softwareentwicklung geworden. Ich probiere gerne neue Technologien aus, tüftle an Lösungen und lerne am liebsten, indem ich eigene Projekte umsetze. Dabei interessiert mich das ganze Spektrum – von durchdachten Benutzeroberflächen bis hin zu APIs und Datenbanken.',
+            about: 'Programmieren heißt für mich, Ideen greifbar zu machen. Aus ersten Experimenten wurde eine echte Begeisterung für Softwareentwicklung. Ich probiere Technologien aus, tüftle an Lösungen und lerne durch eigene Projekte – vom Interface bis zu APIs und Datenbanken.',
             iAm: 'Ich bin',
             located: 'wohnhaft in Hachenburg, Westerwald-Kreis',
             relocateLine1: 'bereit für',
