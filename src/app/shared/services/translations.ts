@@ -30,8 +30,9 @@ export const TRANSLATIONS = {
         projects: {
             headline: 'My Projects',
             joinDescription: 'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
-            sharkieDescription: 'Jump, run and swim game based on an object-oriented approach. Help Sharkie to find coins and poison bottles to fight against the killer whale.',
+            videoflixDescription: 'Video streaming platform with user authentication, background video processing and HLS streaming in multiple resolutions.',
             polloLocoDescription: 'Jump, run and fight against the Crazy Main Chicken and his little Army of Chickens. For every Kill or Hit to the Main Chicken, you will earn Coins where you can buy Salsa Bottles as Ammunition to Use as Weapons.',
+            quizzyDescription: 'Generate multiple-choice quizzes from YouTube videos. Audio is transcribed with Whisper and questions are created with Gemini.',
         },
         references: {
             headline: 'Need a teamplayer? Here’s what my colleagues say about me',
@@ -87,8 +88,9 @@ export const TRANSLATIONS = {
         projects: {
             headline: 'Meine Projekte',
             joinDescription: 'Task-Manager nach dem Kanban-System. Erstelle und organisiere Aufgaben per Drag-and-drop, weise Nutzer und Kategorien zu.',
-            sharkieDescription: 'Jump-, Run- und Schwimm-Spiel auf Basis eines objektorientierten Ansatzes. Hilf Sharkie, Münzen und Giftflaschen zu finden, um gegen den Killerwal zu bestehen.',
+            videoflixDescription: 'Video-Streaming-Plattform mit Benutzeranmeldung, automatisierter Videoverarbeitung und HLS-Streaming in mehreren Auflösungen.',
             polloLocoDescription: 'Renne, springe und kämpfe gegen das verrückte Oberhuhn und seine kleine Hühner-Armee. Für jeden Treffer verdienst du Münzen, mit denen du Salsa-Flaschen als Munition kaufen kannst.',
+            quizzyDescription: 'Erstelle Multiple-Choice-Quizze aus YouTube-Videos. Whisper transkribiert den Ton, Gemini generiert daraus die Fragen.',
         },
         references: {
             headline: 'Du suchst einen Teamplayer? Das sagen meine Kollegen über mich',
