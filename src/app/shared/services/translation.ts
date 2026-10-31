@@ -10,11 +10,19 @@ export class TranslationService {
 
   setLang(lang: Lang): void {
     this.lang.set(lang);
-    localStorage.setItem(STORAGE_KEY, lang);
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch {
+      // The selected language remains active for the current session.
+    }
   }
 
   private loadInitialLang(): Lang {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    return stored === 'de' || stored === 'en' ? stored : 'en';
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return stored === 'de' || stored === 'en' ? stored : 'en';
+    } catch {
+      return 'en';
+    }
   }
 }
