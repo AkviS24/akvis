@@ -1,4 +1,4 @@
-.why-me-style {
+ .why-me-style {
     position: relative;
     display: flex;
     gap: 2px;
@@ -180,8 +180,8 @@
                 &::after {
                     position: absolute;
                     z-index: 2;
-                    top: -2px;
-                    left: -2px;
+                    top: 0;
+                    left: 0;
                     width: 16px;
                     height: 16px;
                     border-top: 2px solid var(--orange-color);
