@@ -1,8 +1,7 @@
 <section class="skills-style">
     <article class="skills-headline">
-        <h2>My Skills</h2>
+        <h2>{{ translate.t().skills.headline }}</h2>
     </article>
-    <br>
     <section class="skill-icon-container">
         <div class="skillSet-1">
             <img src="img/Icons Skills.png" alt="Angular Icon">
@@ -19,5 +18,11 @@
             <img src="img/Icons Skills (8).png" alt="MATERIAL DESIGN Icon">
             <img src="img/Icons Skills (9).png" alt="Challenge Icon">
         </div>
+    </section>
+    <section class="skills-cta">
+        <img class="skills-cta-arrow" src="img/arrow_lets_talk.svg" alt="Arrow">
+        <p>{{ translate.t().skills.ctaText }}</p>
+        <a class="lets-talk-btn" [routerLink]="['']" fragment="contact-component-anchor"
+            (click)="scrollToElement('contact-component-anchor', $event)">{{ translate.t().skills.letsTalk }}</a>
     </section>
 </section>

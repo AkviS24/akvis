@@ -1,10 +1,16 @@
 .hero-style {
     position: relative;
-    width: 1337px;
-    height: 554px;
-    margin-top: 2px;
-    left: -53px;
     display: flex;
+    width: 100%;
+    min-height: 554px;
+    margin-top: 2px;
+}
+
+@media (min-width: 1440px) {
+    .hero-style {
+        width: 1337px;
+        left: -53px;
+    }
 }
 
 .hero-left {
@@ -28,14 +34,13 @@
     color: var(--orange-color);
     font-size: 18px;
     font-weight: 500;
-    font-style: medium;
     line-height: 120%;
     text-decoration: none;
     cursor: pointer;
     transition: ease-in-out 0.3s;
 
     &:hover {
-        color: var(--mint-color);;
+        color: var(--mint-color);
     }
 }
 
@@ -43,17 +48,16 @@
     color: var(--mint-color);
 
     h2 {
-        font-size: 54px;
+        font-size: clamp(24px, 4vw, 54px);
         font-weight: 500;
-        font-style: medium;
         line-height: 120%;
     }
 
     p {
-        font-size: 82px;
+        font-size: clamp(38px, 6.5vw, 82px);
         font-weight: 700;
-        font-style: bold;
         line-height: 120%;
+        overflow-wrap: break-word;
     }
 }
 
@@ -73,7 +77,73 @@
 }
 
 .hero-image {
-    width: 539px;
-    height: 554px;
-    left: 796px;
+    width: min(539px, 45vw);
+    height: auto;
+    aspect-ratio: 539 / 554;
+    margin-left: auto;
+    object-fit: cover;
+}
+
+@media (max-width: 1250px) {
+    .arrow-icon {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-style {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 40px;
+        min-height: unset;
+    }
+
+    .hero-image {
+        width: min(100%, 539px);
+        margin-left: 0;
+    }
+
+    .hero-left {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 40px;
+        width: 100%;
+    }
+
+    .hero-text {
+        text-align: center;
+        width: 100%;
+    }
+
+    .hero-buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+    .contact-btn {
+        position: static;
+        transform: none;
+        width: fit-content;
+        height: auto;
+        padding: 15px 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-buttons {
+        display: none;
+    }
+
+    .hero-style,
+    .hero-left {
+        gap: 24px;
+    }
+
+    .hero-text {
+        text-align: left;
+
+        p {
+            color: var(--orange-color);
+        }
+    }
 }

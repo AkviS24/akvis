@@ -24,8 +24,7 @@
         </div>
     </article>
 </section>
-<br>
 <section class="footer-links-container">
-    <a class="footer-link-1" href="#">Legal notice</a>
-    <a class="footer-link-2" href="#">privacy policy</a>
+    <a class="footer-link-1" [routerLink]="['/legal-notice']">{{ translate.t().footer.legalNotice }}</a>
+    <a class="footer-link-2" [routerLink]="['/privacy-policy']">{{ translate.t().footer.privacyPolicy }}</a>
 </section>

@@ -1,14 +1,28 @@
 <header class="header-style">
     <nav class="nav-bar">
         <p>&lt;AK&gt;</p>
-        <a class="nav-link" [routerLink]="['/']" fragment="whyMe-component-anchor" (click)="scrollToElement('whyMe-component-anchor', $event)">Why Me?</a>
-        <a class="nav-link" [routerLink]="['/']" fragment="skills-component-anchor" (click)="scrollToElement('skills-component-anchor', $event)">Skills</a>
-        <a class="nav-link" [routerLink]="['/']" fragment="projects-component-anchor" (click)="scrollToElement('projects-component-anchor', $event)">Projects</a>
-        <a class="nav-link" [routerLink]="['/']" fragment="contact-component-anchor" (click)="scrollToElement('contact-component-anchor', $event)">Contact</a>
+        <div class="nav-links" [class.open]="menuOpen">
+            <a class="nav-link" [routerLink]="['/']" fragment="whyMe-component-anchor" (click)="scrollToElement('whyMe-component-anchor', $event)">{{ translate.t().nav.whyMe }}</a>
+            <a class="nav-link" [routerLink]="['/']" fragment="skills-component-anchor" (click)="scrollToElement('skills-component-anchor', $event)">{{ translate.t().nav.skills }}</a>
+            <a class="nav-link" [routerLink]="['/']" fragment="projects-component-anchor" (click)="scrollToElement('projects-component-anchor', $event)">{{ translate.t().nav.projects }}</a>
+            <a class="nav-link" [routerLink]="['/']" fragment="contact-component-anchor" (click)="scrollToElement('contact-component-anchor', $event)">{{ translate.t().nav.contact }}</a>
+            <div class="lang-buttons mobile-lang">
+                <button class="lang-button" [class.active]="translate.lang() === 'de'" (click)="setLang('de')" aria-label="Auf Deutsch wechseln"><h6>DE</h6></button>
+                |
+                <button class="lang-button" [class.active]="translate.lang() === 'en'" (click)="setLang('en')" aria-label="Switch to English"><h6>EN</h6></button>
+            </div>
+        </div>
     </nav>
-    <div class="lang-buttons">
-        <button class="lang-button" alt="Switch to German"><h6>DE</h6></button>
-        |
-        <button class="lang-button" alt="Switch to English"><h6>EN</h6></button>
+    <div class="header-right">
+        <div class="lang-buttons">
+            <button class="lang-button" [class.active]="translate.lang() === 'de'" (click)="setLang('de')" aria-label="Auf Deutsch wechseln"><h6>DE</h6></button>
+            |
+            <button class="lang-button" [class.active]="translate.lang() === 'en'" (click)="setLang('en')" aria-label="Switch to English"><h6>EN</h6></button>
+        </div>
+        <button class="burger" [class.open]="menuOpen" (click)="toggleMenu()" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </header>

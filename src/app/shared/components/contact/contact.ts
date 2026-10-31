@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { TranslationService } from '../../services/translation';
 
 @Component({
   selector: 'app-contact',
@@ -11,6 +12,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './contact.scss',
 })
 export class Contact {
+  translate = inject(TranslationService);
   contactForm: FormGroup;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {

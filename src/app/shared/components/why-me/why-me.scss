@@ -1,22 +1,17 @@
 .why-me-style {
+    position: relative;
     display: flex;
-    width: 1224px fixed;
-    height: 452px;
-    top: 754px;
-    left: 105px;
     gap: 2px;
-
 }
 
-.profile-imageg {
-    width: 490px fixed;
-    height: 452px fixed;
-    margin: 10px;
+.profile-image {
+    width: 490px;
 }
 
 .why-me-profileImage {
     width: 488px;
     height: 452px;
+    object-fit: cover;
 }
 
 .why-me-text {
@@ -25,17 +20,18 @@
 
     h2 {
         font-weight: 500;
-        font-size: 54px;
-        font-style: medium;
+        font-size: clamp(32px, 5vw, 54px);
         line-height: 120%;
         text-align: right;
         color: var(--orange-color);
     }
 
-    p {
+    .about-me-text {
+        max-width: 685px;
+        margin-top: 27px;
+        margin-left: auto;
         font-weight: 400;
         font-size: 16px;
-        font-style: regular;
         line-height: 120%;
         text-align: right;
         color: var(--mint-color);
@@ -45,25 +41,24 @@
 .icon-container {
     display: flex;
     flex-direction: column;
-    width: 568px fixed;
-    height: 186px;
+    width: 568px;
     gap: 8px;
-    top: 180px;
-    left: 159px;
+    margin-top: 16px;
+    margin-left: 159px;
+    color: var(--mint-color);
 }
 
 .icon-row {
-    width: 568px filled;
-    height: 56px fixed;
-
+    width: 100%;
 
     &.first-icon-row {
         display: flex;
+        align-items: center;
         gap: 64px;
+        height: 56px;
 
         h3 {
             font-weight: 700;
-            font-style: bold;
             font-size: 48px;
             line-height: 120%;
             color: var(--orange-color);
@@ -71,14 +66,12 @@
 
         .icon {
             display: flex;
-            width: 235px;
-            height: 57px;
             gap: 8px;
 
             img {
-                width: 33.13px;
+                width: 33px;
                 height: 41px;
-                padding-top: 8px;
+                object-fit: contain;
             }
 
             p {
@@ -88,44 +81,213 @@
             }
         }
     }
-}
 
-.second-icon-row {
-    display: flex;
-    padding-left: 152px;
-    gap: 208px;
-
-    img {
-        width: 22.95px;
-        height: 56px;
-        border-width: 3px;
-    }
-
-    &second-icon {
+    &.second-icon-row {
         display: flex;
-        flex-direction: row;
-        width: 130px;
-        height: 48px;
+        align-items: center;
+        height: 56px;
+        padding-left: 152px;
+        gap: 208px;
 
-        img {
-            width: 30px;
-            height: 48.98px;
-            padding-top: 9.88px;
-            border-radius: 2px;
+        .arrow-relocate {
+            width: 23px;
+            height: 56px;
+            object-fit: contain;
         }
 
-        p {
-            width: 96px;
-            height: 40px;
-            padding-top: 1px;
-            padding-left: 46px;
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 120%;
+        .second-icon {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            img {
+                width: 30px;
+                height: 44px;
+                object-fit: contain;
+            }
+
+            p {
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 120%;
+            }
+        }
+    }
+
+    &.third-icon-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 168px;
+
+        .third-icon {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            .remote-icon {
+                width: 54px;
+                height: 47px;
+                object-fit: contain;
+            }
+
+            p {
+                width: 125px;
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 120%;
+            }
+
+            .arrow-remote {
+                width: 24px;
+                height: 40px;
+                object-fit: contain;
+            }
+        }
+
+        .arrow-lets-talk {
+            width: 27px;
+            height: 56px;
+            object-fit: contain;
         }
     }
 }
 
-.third-icon-row {
-    
+.lets-talk-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 15px 30px;
+    background-color: var(--mint-color);
+    color: #0B042D;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    text-decoration: none;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+
+    &:hover {
+        background-color: var(--orange-color);
+        color: #0B042D;
+    }
+}
+
+@media (max-width: 1150px) {
+    .why-me-style {
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .profile-image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .why-me-profileImage {
+        width: min(488px, 100%);
+    }
+
+    .why-me-text {
+        width: 100%;
+        height: auto;
+
+        h2 {
+            text-align: left;
+        }
+
+        .about-me-text {
+            width: 100%;
+            margin-left: 0;
+            text-align: left;
+        }
+    }
+
+    .icon-container {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 32px;
+    }
+
+    .lets-talk-btn {
+        position: static;
+        align-self: center;
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 900px) {
+    .icon-row {
+        &.first-icon-row {
+            gap: 24px;
+
+            h3 {
+                font-size: clamp(32px, 6vw, 48px);
+            }
+        }
+
+        &.second-icon-row {
+            padding-left: 0;
+            gap: 24px;
+
+            .arrow-relocate {
+                display: none;
+            }
+        }
+
+        &.third-icon-row {
+            padding-left: 0;
+
+            .arrow-remote {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-image {
+        display: none;
+    }
+
+    .why-me-text {
+        h2 {
+            text-align: center;
+        }
+
+        .about-me-text {
+            text-align: center;
+        }
+    }
+
+    .icon-container {
+        align-items: center;
+    }
+
+    .icon-row {
+        &.first-icon-row {
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            gap: 16px;
+        }
+
+        &.second-icon-row {
+            justify-content: center;
+            height: auto;
+        }
+
+        &.third-icon-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+
+            .arrow-lets-talk {
+                align-self: flex-end;
+                margin-right: 20%;
+            }
+        }
+    }
 }

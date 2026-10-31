@@ -1,21 +1,20 @@
 <section class="contact-style">
     <section class="contact-headline">
-        <h2>Contact me</h2>
+        <h2>{{ translate.t().contact.headline }}</h2>
         <img src="img/ArrowContact.png" alt="Arrow in the Contact Area">
     </section>
     <section class="contact-infos">
         <article class="contact-text">
-            <p>Encourage people to contact you and describe what role you are interested in. Express interest in
-                contributing to a new project.</p>
+            <p>{{ translate.t().contact.intro }}</p>
         </article>
         <section class="contact-datas">
             <article class="contact-email">
                 <div class="email-icon"></div>
-                <a href="mailto:akvis2022@gmail.com" class="email-text">E-mail: akvis2022@gmail.com</a>
+                <a href="mailto:akvis2022@gmail.com" class="email-text"><span class="contact-label">{{ translate.t().contact.emailLabel }}</span>akvis2022&#64;gmail.com</a>
             </article>
             <article class="contact-phone">
                 <div class="phone-icon"></div>
-                <a href="tel:0176123456" class="phone-text">Tel: 0176 123 45 67</a>
+                <a href="tel:0176123456" class="phone-text"><span class="contact-label">{{ translate.t().contact.telLabel }}</span>0176 123 45 67</a>
             </article>
         </section>
         <a class="contact-arrow-btn" [routerLink]="['']" fragment="hero-component-anchor"
@@ -26,41 +25,44 @@
         <section class="contact-form">
             <article class="contact-form-left">
                 <div class="contact-form-left-container" (click)="$event.stopPropagation()">
-                    <input type="text" formControlName="name" class="contact-form-left-container" placeholder="Name">
-                    @if(contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['name']) {
-                    <span class="error-msg">Please enter a Name</span>
+                    <input type="text" formControlName="name" class="contact-form-left-container"
+                        [placeholder]="translate.t().contact.namePlaceholder">
+                    @if(contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']) {
+                    <span class="error-msg">{{ translate.t().contact.nameError }}</span>
                     }
                 </div>
                 <div class="contact-form-left-container" (click)="$event.stopPropagation()">
                     <input type="email" formControlName="email" class="contact-form-left-container"
-                        placeholder="E-mail">
-                    @if(contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['email']) {
-                    <span class="error-msg">Please enter a valid email address.</span>
+                        [placeholder]="translate.t().contact.emailPlaceholder">
+                    @if(contactForm.get('email')?.touched && contactForm.get('email')?.invalid) {
+                    <span class="error-msg">{{ translate.t().contact.emailError }}</span>
                     }
                 </div>
             </article>
             <article class="contact-form-right" (click)="$event.stopPropagation()">
                 <textarea formControlName="message" class="contact-form-right" rows="4"
-                    placeholder="Message"></textarea>
-                    @if(contactForm.get('message')?.touched && contactForm.get('message')?.errors?.['message']) {
-                    <span class="error-msg">You cannot send a empty mail.</span>
+                    [placeholder]="translate.t().contact.messagePlaceholder"></textarea>
+                    @if(contactForm.get('message')?.touched && contactForm.get('message')?.errors?.['required']) {
+                    <span class="error-msg">{{ translate.t().contact.messageError }}</span>
                     }
             </article>
         </section>
         <section class="contact-privacy-police">
             <article class="policy-checked-area">
-                <div class="policy-text-frame">
-                    <label class="checkbox-container" (click)="$event.stopPropagation()">
-                        <input type="checkbox" formControlName="privacy">
-                    </label>
-                    <p class="checkbox-first-text">I´ve read the</p>
-                    <div class="privacy-policy-text-web">
-                        <p>privacy policy</p>
-                    </div>
-                    <p class="checkbox-second-text">and agree to the processing of my data as outlined.</p>
-                </div>
+                <label class="checkbox-container" (click)="$event.stopPropagation()">
+                    <input type="checkbox" formControlName="privacy">
+                </label>
+                @if (translate.lang() === 'de') {
+                <p class="policy-text">Ich habe die
+                    <a class="privacy-policy-link" [routerLink]="['/privacy-policy']">Datenschutzerklärung</a>
+                    gelesen und stimme der Verarbeitung meiner Daten wie beschrieben zu.</p>
+                } @else {
+                <p class="policy-text">I've read the
+                    <a class="privacy-policy-link" [routerLink]="['/privacy-policy']">privacy policy</a> and agree
+                    to the processing of my data as outlined.</p>
+                }
             </article>
-            <button type="submit" [disabled]="contactForm.invalid" class="submit-btn">Send</button>
+            <button type="submit" [disabled]="contactForm.invalid" class="submit-btn">{{ translate.t().contact.send }}</button>
         </section>
     </form>
 

@@ -1,150 +1,94 @@
 .projects-style {
     .headline-projects {
         display: flex;
-        width: 1439px;
-        height: 65px;
-        top: 1837px;
-        left: 1px;
-        padding-right: 541px;
-        padding-left: 541px;
-        gap: 10px;
+        justify-content: center;
+
+        h2 {
+            font-weight: 500;
+            font-size: clamp(32px, 5vw, 54px);
+            line-height: 120%;
+            color: var(--orange-color);
+        }
     }
 
     .spacer {
-        height: 92px;
-    }
-
-    h2 {
-        font-weight: 500;
-        font-size: 54px;
-        font-style: medium;
-        line-height: 120%;
-        letter-spacing: 0%;
-        color: var(--orange-color);
+        height: 64px;
     }
 
     .projects-container {
         display: flex;
         flex-direction: column;
-        width: 1178px;
-        height: 1241px;
-        top: 1971px;
-        left: 131px;
 
         .projects {
             display: flex;
-            width: 1134px;
-            height: 371px;
+            gap: 48px;
             color: var(--mint-color);
-            gap: 40px;
 
             h3 {
                 font-weight: 700;
-                font-style: bold;
-                font-size: 48px;
+                font-size: clamp(32px, 4.5vw, 48px);
                 line-height: 120%;
-                letter-spacing: 0%;
+            }
+
+            h5 {
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 140%;
             }
 
             .project-image {
-                width: 588px;
-                height: 371px;
+                width: min(588px, 50vw);
+                height: auto;
+                aspect-ratio: 588 / 371;
                 object-fit: cover;
                 object-position: center;
             }
 
-            &.--first-element {
+            &.--first-element,
+            &.--third-element {
                 flex-direction: row;
             }
 
             &.--second-element {
                 flex-direction: row-reverse;
+                margin-left: 44px;
             }
 
-            &.--third-element {
-                flex-direction: row;
-            }
-
-            .project-info-right {
+            .project-info-right,
+            .project-info-left {
                 display: flex;
                 flex-direction: column;
                 width: 498px;
-                height: 318px;
-                top: 14px;
-                left: 636px;
-                gap: 32px;
+                margin-top: 14px;
+                gap: 40px;
 
                 .top-layout {
-                    width: 498px;
-                    height: 103px;
-
-                    .project-headline-container {
-                        width: 475px;
-                        height: 59px;
-                        top: 2px;
-                        left: 2px;
-                    }
-
-                    .project-skills-headline {
-                        width: 476px;
-                        height: 25px;
-                        top: 78px;
-                        left: 3px;
-
-                        h5 {
-                            font-weight: 400;
-                            font-style: normal;
-                            font-size: 18px;
-                            line-height: 140%;
-                            letter-spacing: 0%;
-                        }
-                    }
+                    display: flex;
+                    flex-direction: column;
+                    gap: 19px;
                 }
 
                 .bottom-layout {
                     display: flex;
                     flex-direction: column;
-                    width: 499px;
-                    height: 175px;
-                    gap: 32px;
-
-                    h5 {
-                        font-weight: 400;
-                        font-style: normal;
-                        font-size: 18px;
-                        line-height: 140%;
-                        letter-spacing: 0%;
-                    }
+                    gap: 48px;
 
                     .project-button-container {
                         display: flex;
                         flex-direction: row;
                         gap: 24px;
-                        width: 499px;
-                        height: 52px;
-                        padding-right: 192px;
 
                         .git-hub-button {
-                            display: flex;
-                            flex-direction: row;
                             cursor: pointer;
                             appearance: none;
                             background-color: transparent;
                             border: solid 1px var(--mint-color);
                             color: var(--orange-color);
                             font-weight: 500;
-                            font-style: medium;
                             font-size: 18px;
                             line-height: 120%;
-                            letter-spacing: 0%;
-                            width: 125px;
-                            height: 52px;
-                            padding-top: 15px;
-                            padding-right: 30px;
-                            padding-bottom: 15px;
-                            padding-left: 30px;
-                            gap: 10px;
-                            transition: all 0.3 ease-in-out;
+                            padding: 15px 30px;
+                            transition: all 0.3s ease-in-out;
 
                             &:hover {
                                 color: var(--mint-color);
@@ -152,25 +96,16 @@
                         }
 
                         .live-test-button {
-                            display: flex;
-                            flex-direction: row;
                             cursor: pointer;
                             appearance: none;
                             background-color: var(--mint-color);
+                            border: none;
                             color: #0B042D;
                             font-weight: 500;
-                            font-style: medium;
                             font-size: 18px;
                             line-height: 120%;
-                            letter-spacing: 0%;
-                            width: 158px;
-                            height: 52px;
-                            padding-top: 15px;
-                            padding-right: 30px;
-                            padding-bottom: 15px;
-                            padding-left: 30px;
-                            gap: 10px;
-                            transition: all 0.5 ease-in-out;
+                            padding: 15px 30px;
+                            transition: all 0.3s ease-in-out;
 
                             &:hover {
                                 color: var(--orange-color);
@@ -181,116 +116,100 @@
             }
 
             .project-info-left {
-                display: flex;
-                flex-direction: column;
-                width: 498px;
-                height: 318px;
-                gap: 40px;
+                text-align: right;
+
+                .project-button-container {
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1150px) {
+    .projects-style {
+        .projects-container {
+            .projects {
+                flex-direction: column !important;
+                align-items: center;
                 gap: 32px;
 
-                .top-layout {
-                    width: 498px;
-                    height: 103px;
+                &.--second-element {
+                    margin-left: 0;
+                }
 
-                    .project-headline-container {
-                        width: 475px;
-                        height: 59px;
-                        top: 2px;
-                        left: 2px;
-                    }
+                .project-image {
+                    width: min(588px, 100%);
+                }
 
-                    .project-skills-headline {
-                        width: 476px;
-                        height: 25px;
-                        top: 78px;
-                        left: 3px;
+                .project-info-right,
+                .project-info-left {
+                    width: min(588px, 100%);
+                    margin-top: 0;
+                    gap: 24px;
 
-                        h5 {
-                            font-weight: 400;
-                            font-style: normal;
-                            font-size: 18px;
-                            line-height: 140%;
-                            letter-spacing: 0%;
+                    .bottom-layout {
+                        gap: 32px;
+
+                        .project-button-container {
+                            flex-wrap: wrap;
                         }
                     }
                 }
 
-                .bottom-layout {
-                    display: flex;
-                    flex-direction: column;
-                    width: 499px;
-                    height: 175px;
-                    gap: 32px;
-
-                    h5 {
-                        font-weight: 400;
-                        font-style: normal;
-                        font-size: 18px;
-                        line-height: 140%;
-                        letter-spacing: 0%;
-                    }
+                .project-info-left {
+                    text-align: left;
 
                     .project-button-container {
-                        display: flex;
-                        flex-direction: row;
-                        gap: 24px;
-                        width: 499px;
-                        height: 52px;
-                        padding-right: 192px;
-
-                        .git-hub-button {
-                            display: flex;
-                            flex-direction: row;
-                            cursor: pointer;
-                            appearance: none;
-                            background-color: transparent;
-                            border: solid 1px var(--mint-color);
-                            color: var(--orange-color);
-                            font-weight: 500;
-                            font-style: medium;
-                            font-size: 18px;
-                            line-height: 120%;
-                            letter-spacing: 0%;
-                            width: 125px;
-                            height: 52px;
-                            padding-top: 15px;
-                            padding-right: 30px;
-                            padding-bottom: 15px;
-                            padding-left: 30px;
-                            gap: 10px;
-                            transition: all 0.3 ease-in-out;
-
-                            &:hover {
-                                color: var(--mint-color);
-                            }
-                        }
-
-                        .live-test-button {
-                            display: flex;
-                            flex-direction: row;
-                            cursor: pointer;
-                            appearance: none;
-                            background-color: var(--mint-color);
-                            color: #0B042D;
-                            font-weight: 500;
-                            font-style: medium;
-                            font-size: 18px;
-                            line-height: 120%;
-                            letter-spacing: 0%;
-                            width: 158px;
-                            height: 52px;
-                            padding-top: 15px;
-                            padding-right: 30px;
-                            padding-bottom: 15px;
-                            padding-left: 30px;
-                            gap: 10px;
-                            transition: all 0.5 ease-in-out;
-
-                            &:hover {
-                                color: var(--orange-color);
-                            }
-                        }
+                        justify-content: flex-start;
                     }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .projects-style {
+        .headline-projects {
+            h2 {
+                text-align: center;
+            }
+        }
+
+        .projects-container {
+            .projects {
+
+                .project-info-right,
+                .project-info-left,
+                .bottom-layout {
+                    display: contents;
+                }
+
+                .project-info-right,
+                .project-info-left {
+                    text-align: center;
+                }
+
+                .top-layout {
+                    order: 1;
+                    width: 100%;
+                    text-align: center;
+                    gap: 8px;
+                }
+
+                .bottom-layout > h5 {
+                    order: 2;
+                    text-align: center;
+                }
+
+                .project-image {
+                    order: 3;
+                }
+
+                .project-button-container {
+                    order: 4;
+                    justify-content: center !important;
                 }
             }
         }
