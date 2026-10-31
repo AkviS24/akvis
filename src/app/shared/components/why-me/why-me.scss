@@ -68,6 +68,45 @@
             display: flex;
             gap: 8px;
 
+            .location-icon-wrapper {
+                position: relative;
+                display: flex;
+                flex: 0 0 33px;
+                height: 41px;
+                align-items: center;
+                justify-content: center;
+
+                &::after {
+                    position: absolute;
+                    top: calc(100% - 4px);
+                    left: 50%;
+                    width: 8px;
+                    height: 8px;
+                    border: 2px solid var(--mint-color);
+                    border-radius: 50%;
+                    content: "";
+                    opacity: 0;
+                    transform: translateX(-50%);
+                    transition: opacity 0.3s ease;
+                }
+
+                img {
+                    position: relative;
+                    z-index: 1;
+                    transition: transform 0.3s ease;
+                }
+
+                &:hover {
+                    img {
+                        transform: translateY(-5px);
+                    }
+
+                    &::after {
+                        opacity: 1;
+                    }
+                }
+            }
+
             img {
                 width: 33px;
                 height: 41px;
