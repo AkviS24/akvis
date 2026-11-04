@@ -1,9 +1,9 @@
+@use './styles/base.scss';
 /* Locally hosted Roboto Mono font files */
 @import '@fontsource/roboto-mono/400.css';
 @import '@fontsource/roboto-mono/500.css';
 @import '@fontsource/roboto-mono/700.css';
 
-@use './styles/base.scss';
 
 * {
     margin: 0;
