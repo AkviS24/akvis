@@ -1,7 +1,7 @@
 @if (authDialog.isOpen()) {
 <div class="auth-overlay" [class.closing]="authDialog.isClosing()" (click)="authDialog.close()">
-  <section class="auth-dialog" [class.closing]="authDialog.isClosing()" role="dialog" aria-modal="true" [attr.aria-label]="translate.t().auth.login"
-    (click)="$event.stopPropagation()">
+  <section class="auth-dialog" [class.closing]="authDialog.isClosing()" role="dialog" aria-modal="true"
+    [attr.aria-label]="translate.t().auth.login" (click)="$event.stopPropagation()">
     <a class="auth-domain" href="https://www.ak-coding.de">
       www.ak-coding.de
     </a>
@@ -30,13 +30,13 @@
     </div>
 
     @if (authDialog.mode() === 'login') {
-    <form class="auth-form" (submit)="$event.preventDefault()">
-      <input type="email" name="email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
+    <form class="auth-form" (submit)="$event.preventDefault(); login(email.value, password.value)">
+      <input #email type="email" name="email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
 
-      <input type="password" name="password" [placeholder]="translate.t().auth.password" autocomplete="current-password"
-        required />
+      <input #password type="password" name="password" [placeholder]="translate.t().auth.password"
+        autocomplete="current-password" required />
 
-      <button type="submit" class="auth-submit">
+      <button type="submit" class="auth-submit" [disabled]="isSubmitting">
         {{ translate.t().auth.submit }}
       </button>
     </form>
@@ -48,18 +48,20 @@
       </button>
     </p>
     } @else {
-    <form class="auth-form" (submit)="$event.preventDefault()">
-      <input type="email" name="email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
+    <form class="auth-form"
+      (submit)="$event.preventDefault(); register(email.value, username.value, password.value, passwordConfirm.value)">
+      <input #email type="email" name="email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
 
-      <input type="text" name="username" [placeholder]="translate.t().auth.username" autocomplete="username" required />
-
-      <input type="password" name="password" [placeholder]="translate.t().auth.password" autocomplete="new-password"
+      <input #username type="text" name="username" [placeholder]="translate.t().auth.username" autocomplete="username"
         required />
 
-      <input type="password" name="passwordConfirm" [placeholder]="translate.t().auth.passwordConfirm"
+      <input #password type="password" name="password" [placeholder]="translate.t().auth.password"
         autocomplete="new-password" required />
 
-      <button type="submit" class="auth-submit">
+      <input #passwordConfirm type="password" name="passwordConfirm" [placeholder]="translate.t().auth.passwordConfirm"
+        autocomplete="new-password" required />
+
+      <button type="submit" class="auth-submit" [disabled]="isSubmitting">
         {{ translate.t().auth.submit }}
       </button>
     </form>
