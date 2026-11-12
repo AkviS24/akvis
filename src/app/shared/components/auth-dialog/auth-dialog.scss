@@ -8,6 +8,10 @@
     padding: 24px;
     background-color: rgba(0, 0, 0, 0.75);
     animation: overlay-fade-in 0.3s ease forwards;
+
+    &.closing {
+        animation: overlay-fade-out 0.35s ease-in forwards;
+    }
 }
 
 .auth-dialog {
@@ -24,6 +28,10 @@
     box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
     color: var(--mint-color);
     animation: dialog-slide-in 0.4s ease forwards;
+
+    &.closing {
+        animation: dialog-slide-out 0.35s ease-in forwards;
+    }
 }
 
 .auth-domain {
@@ -161,8 +169,13 @@
 }
 
 @keyframes overlay-fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes dialog-slide-in {
@@ -170,9 +183,32 @@
         opacity: 0;
         transform: translateX(60px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes overlay-fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes dialog-slide-out {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(60px);
     }
 }
 
@@ -190,6 +226,10 @@
         border: none;
         border-radius: 0;
         animation: dialog-slide-up 0.4s ease forwards;
+
+        &.closing {
+            animation: dialog-slide-down 0.35s ease-in forwards;
+        }
     }
 
     .auth-domain {
@@ -227,13 +267,26 @@
         opacity: 0;
         transform: translateY(60px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+@keyframes dialog-slide-down {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
+
     .auth-overlay,
     .auth-dialog {
         animation: none;

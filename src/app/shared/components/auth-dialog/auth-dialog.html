@@ -1,122 +1,76 @@
 @if (authDialog.isOpen()) {
-  <div class="auth-overlay" (click)="authDialog.close()">
-    <section
-      class="auth-dialog"
-      role="dialog"
-      aria-modal="true"
-      [attr.aria-label]="translate.t().auth.login"
-      (click)="$event.stopPropagation()"
-    >
-      <a class="auth-domain" href="https://www.ak-coding.de">
-        www.ak-coding.de
-      </a>
+<div class="auth-overlay" [class.closing]="authDialog.isClosing()" (click)="authDialog.close()">
+  <section class="auth-dialog" [class.closing]="authDialog.isClosing()" role="dialog" aria-modal="true" [attr.aria-label]="translate.t().auth.login"
+    (click)="$event.stopPropagation()">
+    <a class="auth-domain" href="https://www.ak-coding.de">
+      www.ak-coding.de
+    </a>
 
-      <div class="auth-header">
-        <div class="auth-brand">
-          <span class="auth-logo">&lt;AK&gt;</span>
-          <h2>
-            {{ authDialog.mode() === 'login'
-              ? translate.t().auth.login
-              : translate.t().auth.register }}
-          </h2>
-        </div>
-
-        <div class="auth-language">
-          <button
-            type="button"
-            class="lang-button"
-            [class.active]="translate.lang() === 'de'"
-            (click)="translate.setLang('de')"
-          >
-            DE
-          </button>
-          |
-          <button
-            type="button"
-            class="lang-button"
-            [class.active]="translate.lang() === 'en'"
-            (click)="translate.setLang('en')"
-          >
-            EN
-          </button>
-        </div>
+    <div class="auth-header">
+      <div class="auth-brand">
+        <span class="auth-logo">&lt;AK&gt;</span>
+        <h2>
+          {{ authDialog.mode() === 'login'
+          ? translate.t().auth.login
+          : translate.t().auth.register }}
+        </h2>
       </div>
 
-      @if (authDialog.mode() === 'login') {
-        <form class="auth-form" (submit)="$event.preventDefault()">
-          <input
-            type="email"
-            name="email"
-            [placeholder]="translate.t().auth.email"
-            autocomplete="email"
-            required
-          />
+      <div class="auth-language">
+        <button type="button" class="lang-button" [class.active]="translate.lang() === 'de'"
+          (click)="translate.setLang('de')">
+          DE
+        </button>
+        |
+        <button type="button" class="lang-button" [class.active]="translate.lang() === 'en'"
+          (click)="translate.setLang('en')">
+          EN
+        </button>
+      </div>
+    </div>
 
-          <input
-            type="password"
-            name="password"
-            [placeholder]="translate.t().auth.password"
-            autocomplete="current-password"
-            required
-          />
+    @if (authDialog.mode() === 'login') {
+    <form class="auth-form" (submit)="$event.preventDefault()">
+      <input type="email" name="email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
 
-          <button type="submit" class="auth-submit">
-            {{ translate.t().auth.submit }}
-          </button>
-        </form>
+      <input type="password" name="password" [placeholder]="translate.t().auth.password" autocomplete="current-password"
+        required />
 
-        <p class="auth-switch">
-          {{ translate.t().auth.noAccount }}
-          <button type="button" (click)="authDialog.openRegister()">
-            {{ translate.t().auth.register }}
-          </button>
-        </p>
-      } @else {
-        <form class="auth-form" (submit)="$event.preventDefault()">
-          <input
-            type="email"
-            name="email"
-            [placeholder]="translate.t().auth.email"
-            autocomplete="email"
-            required
-          />
+      <button type="submit" class="auth-submit">
+        {{ translate.t().auth.submit }}
+      </button>
+    </form>
 
-          <input
-            type="text"
-            name="username"
-            [placeholder]="translate.t().auth.username"
-            autocomplete="username"
-            required
-          />
+    <p class="auth-switch">
+      {{ translate.t().auth.noAccount }}
+      <button type="button" (click)="authDialog.openRegister()">
+        {{ translate.t().auth.register }}
+      </button>
+    </p>
+    } @else {
+    <form class="auth-form" (submit)="$event.preventDefault()">
+      <input type="email" name="email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
 
-          <input
-            type="password"
-            name="password"
-            [placeholder]="translate.t().auth.password"
-            autocomplete="new-password"
-            required
-          />
+      <input type="text" name="username" [placeholder]="translate.t().auth.username" autocomplete="username" required />
 
-          <input
-            type="password"
-            name="passwordConfirm"
-            [placeholder]="translate.t().auth.passwordConfirm"
-            autocomplete="new-password"
-            required
-          />
+      <input type="password" name="password" [placeholder]="translate.t().auth.password" autocomplete="new-password"
+        required />
 
-          <button type="submit" class="auth-submit">
-            {{ translate.t().auth.submit }}
-          </button>
-        </form>
+      <input type="password" name="passwordConfirm" [placeholder]="translate.t().auth.passwordConfirm"
+        autocomplete="new-password" required />
 
-        <p class="auth-switch">
-          {{ translate.t().auth.hasAccount }}
-          <button type="button" (click)="authDialog.showLogin()">
-            {{ translate.t().auth.backToLogin }}
-          </button>
-        </p>
-      }
-    </section>
-  </div>
+      <button type="submit" class="auth-submit">
+        {{ translate.t().auth.submit }}
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      {{ translate.t().auth.hasAccount }}
+      <button type="button" (click)="authDialog.showLogin()">
+        {{ translate.t().auth.backToLogin }}
+      </button>
+    </p>
+    }
+  </section>
+</div>
 }

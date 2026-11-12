@@ -7,9 +7,14 @@ export type AuthMode = 'login' | 'register';
 })
 export class AuthDialog {
   isOpen = signal(false);
+  isClosing = signal(false);
   mode = signal<AuthMode>('login');
 
+  private animationTimeout?: ReturnType<typeof setTimeout>;
+
   openLogin(): void {
+    this.clearAnimationTimeout();
+    this.isClosing.set(false);
     this.mode.set('login');
     this.isOpen.set(true);
   }
@@ -23,6 +28,20 @@ export class AuthDialog {
   }
 
   close(): void {
-    this.isOpen.set(false);
+    if (!this.isOpen() || this.isClosing()) return;
+
+    this.isClosing.set(true);
+    this.animationTimeout = setTimeout(() => {
+      this.isOpen.set(false);
+      this.isClosing.set(false);
+      this.animationTimeout = undefined;
+    }, 350);
+  }
+
+  private clearAnimationTimeout(): void {
+    if (this.animationTimeout) {
+      clearTimeout(this.animationTimeout);
+      this.animationTimeout = undefined;
+    }
   }
 }

@@ -6,6 +6,7 @@
             <a class="nav-link" [routerLink]="['/']" fragment="skills-component-anchor" (click)="scrollToElement('skills-component-anchor', $event)">{{ translate.t().nav.skills }}</a>
             <a class="nav-link" [routerLink]="['/']" fragment="projects-component-anchor" (click)="scrollToElement('projects-component-anchor', $event)">{{ translate.t().nav.projects }}</a>
             <a class="nav-link" [routerLink]="['/']" fragment="contact-component-anchor" (click)="scrollToElement('contact-component-anchor', $event)">{{ translate.t().nav.contact }}</a>
+            <a class="nav-link" href="#" (click)="openLogin($event)">{{ translate.t().nav.login }}</a>
             <div class="lang-buttons mobile-lang">
                 <button class="lang-button" [class.active]="translate.lang() === 'de'" (click)="setLang('de')" aria-label="Auf Deutsch wechseln"><h6>DE</h6></button>
                 |

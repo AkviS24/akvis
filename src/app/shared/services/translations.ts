@@ -7,6 +7,7 @@ export const TRANSLATIONS = {
             skills: 'Skills',
             projects: 'Projects',
             contact: 'Contact',
+            login: 'Login',
         },
         hero: {
             job: 'SOFTWARE DEVELOPER',
@@ -77,6 +78,7 @@ export const TRANSLATIONS = {
             skills: 'Skills',
             projects: 'Projekte',
             contact: 'Kontakt',
+            login: 'Anmelden',
         },
         hero: {
             job: 'SOFTWARE DEVELOPER',
