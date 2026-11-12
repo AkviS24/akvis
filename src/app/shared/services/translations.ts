@@ -58,6 +58,18 @@ export const TRANSLATIONS = {
             legalNotice: 'Legal notice',
             privacyPolicy: 'privacy policy',
         },
+        auth: {
+            login: 'Login',
+            register: 'Register',
+            email: 'E-mail address',
+            username: 'Username',
+            password: 'Password',
+            passwordConfirm: 'Confirm password',
+            submit: 'Submit',
+            noAccount: 'Not registered yet?',
+            hasAccount: 'Already registered?',
+            backToLogin: 'Back to login',
+        },
     },
     de: {
         nav: {
@@ -115,6 +127,18 @@ export const TRANSLATIONS = {
         footer: {
             legalNotice: 'Impressum',
             privacyPolicy: 'Datenschutz',
+        },
+        auth: {
+            login: 'Anmelden',
+            register: 'Registrieren',
+            email: 'E-Mail-Adresse',
+            username: 'Benutzername',
+            password: 'Passwort',
+            passwordConfirm: 'Passwort bestätigen',
+            submit: 'Abschicken',
+            noAccount: 'Noch nicht registriert?',
+            hasAccount: 'Bereits registriert?',
+            backToLogin: 'Zurück zum Login',
         },
     },
 } as const;

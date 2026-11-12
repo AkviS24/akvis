@@ -1,0 +1,29 @@
+@if (statusDialog.message(); as status) {
+  <aside
+    class="status-dialog"
+    [class.success]="status.type === 'success'"
+    [class.error]="status.type === 'error'"
+    [class.closing]="statusDialog.isClosing()"
+    role="alert"
+    aria-live="assertive"
+  >
+    <button
+      type="button"
+      class="status-close"
+      aria-label="Close notification"
+      (click)="statusDialog.close()"
+    >
+      &times;
+    </button>
+
+    @if (status.type === 'success') {
+      <span class="status-icon" aria-hidden="true">✓</span>
+    } @else {
+      <span class="status-icon" aria-hidden="true">!</span>
+    }
+
+    <p class="status-message">
+      {{ status.message }}
+    </p>
+  </aside>
+}
