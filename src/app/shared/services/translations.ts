@@ -70,6 +70,9 @@ export const TRANSLATIONS = {
             noAccount: 'Not registered yet?',
             hasAccount: 'Already registered?',
             backToLogin: 'Back to login',
+            activationEmailSentTitle: 'Almost there!',
+            activationEmailSentMessage: 'We have sent you an email with an activation link. Please check your inbox and confirm your email address to activate your account.',
+            close: 'Close',
         },
     },
     de: {
@@ -141,6 +144,9 @@ export const TRANSLATIONS = {
             noAccount: 'Noch nicht registriert?',
             hasAccount: 'Bereits registriert?',
             backToLogin: 'Zurück zum Login',
+            activationEmailSentTitle: 'Fast geschafft!',
+            activationEmailSentMessage: 'Wir haben dir eine E-Mail mit einem Aktivierungslink geschickt. Bitte prüfe dein Postfach und bestätige deine E-Mail-Adresse, um dein Konto zu aktivieren.',
+            close: 'Schließen',
         },
     },
 } as const;

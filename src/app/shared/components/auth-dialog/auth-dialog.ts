@@ -6,10 +6,11 @@ import { AuthDialog as AuthDialogService } from '../../services/auth-dialog';
 import { AuthService } from '../../services/auth';
 import { StatusDialog as StatusDialogService } from '../../services/status-dialog';
 import { TranslationService } from '../../services/translation';
+import { RegistrationConfirmation } from './registration-confirmation/registration-confirmation';
 
 @Component({
   selector: 'app-auth-dialog',
-  imports: [],
+  imports: [RegistrationConfirmation],
   templateUrl: './auth-dialog.html',
   styleUrl: './auth-dialog.scss',
 })
@@ -46,6 +47,8 @@ export class AuthDialog {
   ): void {
     this.isSubmitting = true;
 
+    console.log('Registration started:', this.isSubmitting);
+
     this.auth.getCsrfCookie().pipe(
       switchMap(() => this.auth.register({
         email,
@@ -53,13 +56,17 @@ export class AuthDialog {
         password,
         password_confirm: passwordConfirm,
       })),
-      finalize(() => this.isSubmitting = false)
+      finalize(() => {
+        this.isSubmitting = false;
+        console.log('Registration finalized:', this.isSubmitting);
+      })
     ).subscribe({
       next: (response) => {
-        this.statusDialog.showSuccess(response.detail);
-        this.authDialog.showLogin();
+        console.log('REGISTRATION SUCCESS:', response);
+        this.authDialog.showRegistrationComplete();
       },
       error: (error: HttpErrorResponse) => {
+        console.log('REGISTRATION ERROR:', error.status, error.error);
         this.statusDialog.showError(this.getErrorMessage(error, 'register'));
       },
     });

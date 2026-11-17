@@ -9,6 +9,7 @@ export class AuthDialog {
   isOpen = signal(false);
   isClosing = signal(false);
   mode = signal<AuthMode>('login');
+  registrationComplete = signal(false);
 
   private animationTimeout?: ReturnType<typeof setTimeout>;
 
@@ -16,15 +17,21 @@ export class AuthDialog {
     this.clearAnimationTimeout();
     this.isClosing.set(false);
     this.mode.set('login');
+    this.registrationComplete.set(false);
     this.isOpen.set(true);
   }
 
   openRegister(): void {
+    this.registrationComplete.set(false);
     this.mode.set('register');
   }
 
   showLogin(): void {
     this.mode.set('login');
+  }
+
+  showRegistrationComplete(): void {
+    this.registrationComplete.set(true);
   }
 
   close(): void {

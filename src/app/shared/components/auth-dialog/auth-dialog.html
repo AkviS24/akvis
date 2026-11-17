@@ -2,6 +2,9 @@
 <div class="auth-overlay" [class.closing]="authDialog.isClosing()" (click)="authDialog.close()">
   <section class="auth-dialog" [class.closing]="authDialog.isClosing()" role="dialog" aria-modal="true"
     [attr.aria-label]="translate.t().auth.login" (click)="$event.stopPropagation()">
+    @if (authDialog.registrationComplete()) {
+    <app-registration-confirmation />
+    } @else {
     <a class="auth-domain" href="https://www.ak-coding.de">
       www.ak-coding.de
     </a>
@@ -73,6 +76,7 @@
       </button>
     </p>
     }
+  }
   </section>
 </div>
 }

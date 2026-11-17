@@ -1,0 +1,13 @@
+<div class="registration-confirmation">
+  <h2>{{ translate.t().auth.activationEmailSentTitle }}</h2>
+
+  <p>{{ translate.t().auth.activationEmailSentMessage }}</p>
+
+  <button
+    type="button"
+    class="confirmation-close"
+    (click)="authDialog.close()"
+  >
+    {{ translate.t().auth.close }}
+  </button>
+</div>
