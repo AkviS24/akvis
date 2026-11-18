@@ -23,6 +23,11 @@ export interface ActivationData {
   token: string;
 }
 
+export interface PasswordResetConfirmData extends ActivationData {
+  password: string;
+  password_confirm: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -33,14 +38,14 @@ export class AuthService {
 
   getCsrfCookie(): Observable<AuthResponse> {
     return this.http.get<AuthResponse>(
-      `${this.apiUrl}csrf/`,
+      this.apiUrl + 'csrf/',
       { withCredentials: true }
     );
   }
 
   register(data: RegisterData): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
-      `${this.apiUrl}register/`,
+      this.apiUrl + 'register/',
       data,
       { withCredentials: true }
     );
@@ -48,7 +53,7 @@ export class AuthService {
 
   login(data: LoginData): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
-      `${this.apiUrl}login/`,
+      this.apiUrl + 'login/',
       data,
       { withCredentials: true }
     );
@@ -56,7 +61,7 @@ export class AuthService {
 
   logout(): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
-      `${this.apiUrl}logout/`,
+      this.apiUrl + 'logout/',
       {},
       { withCredentials: true }
     );
@@ -64,7 +69,7 @@ export class AuthService {
 
   refresh(): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
-      `${this.apiUrl}refresh/`,
+      this.apiUrl + 'refresh/',
       {},
       { withCredentials: true }
     );
@@ -72,7 +77,23 @@ export class AuthService {
 
   activate(data: ActivationData): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
-      `${this.apiUrl}activate/`,
+      this.apiUrl + 'activate/',
+      data,
+      { withCredentials: true }
+    );
+  }
+
+  requestPasswordReset(email: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      this.apiUrl + 'password-reset/',
+      { email },
+      { withCredentials: true }
+    );
+  }
+
+  confirmPasswordReset(data: PasswordResetConfirmData): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      this.apiUrl + 'password-reset/confirm/',
       data,
       { withCredentials: true }
     );

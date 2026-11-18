@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { finalize, switchMap } from 'rxjs';
 
@@ -21,6 +21,36 @@ export class AuthDialog {
   translate = inject(TranslationService);
 
   isSubmitting = false;
+  isForgotPassword = false;
+
+  constructor() {
+    effect(() => {
+      if (this.authDialog.isOpen()) this.isForgotPassword = false;
+    });
+  }
+
+  showForgotPassword(): void {
+    this.isForgotPassword = true;
+  }
+
+  backToLogin(): void {
+    this.isForgotPassword = false;
+  }
+
+  requestPasswordReset(email: string): void {
+    this.isSubmitting = true;
+    this.auth.getCsrfCookie().pipe(
+      switchMap(() => this.auth.requestPasswordReset(email)),
+      finalize(() => this.isSubmitting = false)
+    ).subscribe({
+      next: () => this.statusDialog.showSuccess(
+        this.translate.t().auth.passwordResetRequestSent
+      ),
+      error: () => this.statusDialog.showError(
+        this.translate.t().auth.passwordResetRequestFailed
+      ),
+    });
+  }
 
   login(email: string, password: string): void {
     this.isSubmitting = true;

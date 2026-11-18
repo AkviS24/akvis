@@ -13,9 +13,11 @@
       <div class="auth-brand">
         <span class="auth-logo">&lt;AK&gt;</span>
         <h2>
-          {{ authDialog.mode() === 'login'
-          ? translate.t().auth.login
-          : translate.t().auth.register }}
+          {{ isForgotPassword
+          ? translate.t().auth.forgotPassword
+          : authDialog.mode() === 'login'
+            ? translate.t().auth.login
+            : translate.t().auth.register }}
         </h2>
       </div>
 
@@ -32,7 +34,21 @@
       </div>
     </div>
 
-    @if (authDialog.mode() === 'login') {
+    @if (isForgotPassword) {
+    <form class="auth-form" (submit)="$event.preventDefault(); requestPasswordReset(resetEmail.value)">
+      <p class="auth-description">{{ translate.t().auth.forgotPasswordMessage }}</p>
+      <input #resetEmail type="email" name="resetEmail" [placeholder]="translate.t().auth.email"
+        autocomplete="email" required />
+      <button type="submit" class="auth-submit" [disabled]="isSubmitting">
+        {{ translate.t().auth.sendResetLink }}
+      </button>
+    </form>
+    <p class="auth-switch">
+      <button type="button" (click)="backToLogin()">
+        {{ translate.t().auth.backToLogin }}
+      </button>
+    </p>
+    } @else if (authDialog.mode() === 'login') {
     <form class="auth-form" (submit)="$event.preventDefault(); login(email.value, password.value)">
       <input #email type="email" name="email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
 
@@ -44,6 +60,11 @@
       </button>
     </form>
 
+    <p class="auth-switch">
+      <button type="button" (click)="showForgotPassword()">
+        {{ translate.t().auth.forgotPassword }}
+      </button>
+    </p>
     <p class="auth-switch">
       {{ translate.t().auth.noAccount }}
       <button type="button" (click)="authDialog.openRegister()">

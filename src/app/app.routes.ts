@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { MainPage } from './shared/pages/main-page/main-page';
 import { LegalNotice } from './shared/pages/legal-notice/legal-notice';
 import { PrivacyPolicy } from './shared/pages/privacy-policy/privacy-policy';
+import { PasswordReset } from './shared/pages/password-reset/password-reset';
 
 export const routes: Routes = [
     {
@@ -12,6 +13,9 @@ export const routes: Routes = [
     },
     {
         path: 'privacy-policy', component: PrivacyPolicy
+    },
+    {
+        path: 'password-reset/:uid/:token', component: PasswordReset
     },
     {
         path: '**', redirectTo: '', pathMatch: 'full'
