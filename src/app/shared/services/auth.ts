@@ -6,6 +6,15 @@ export interface AuthResponse {
   detail: string;
 }
 
+export interface AuthStatusResponse {
+  authenticated: true;
+}
+
+export interface DemoAssertionResponse {
+  assertion: string;
+  expires_in: number;
+}
+
 export interface RegisterData {
   email: string;
   username: string;
@@ -39,6 +48,21 @@ export class AuthService {
   getCsrfCookie(): Observable<AuthResponse> {
     return this.http.get<AuthResponse>(
       this.apiUrl + 'csrf/',
+      { withCredentials: true }
+    );
+  }
+
+  getStatus(): Observable<AuthStatusResponse> {
+    return this.http.get<AuthStatusResponse>(
+      this.apiUrl + 'me/',
+      { withCredentials: true }
+    );
+  }
+
+  createDemoAssertion(project: string): Observable<DemoAssertionResponse> {
+    return this.http.post<DemoAssertionResponse>(
+      this.apiUrl + 'demo-assertion/',
+      { project, resource: 'live-demo' },
       { withCredentials: true }
     );
   }
