@@ -31,7 +31,8 @@ export const TRANSLATIONS = {
         projects: {
             headline: 'My Projects',
             joinDescription: 'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
-            videoflixDescription: 'Video streaming platform with user authentication, background video processing and HLS streaming in multiple resolutions.',
+            kanmindDescription: 'A Kanban-based task and project management app with user authentication, boards, task assignments, reviewers and comments.',
+            liveDemo: 'Live Demo',
             polloLocoDescription: 'Jump, run and fight against the Crazy Main Chicken and his little Army of Chickens. For every Kill or Hit to the Main Chicken, you will earn Coins where you can buy Salsa Bottles as Ammunition to Use as Weapons.',
             quizzyDescription: 'Generate multiple-choice quizzes from YouTube videos. Audio is transcribed with Whisper and questions are created with Gemini.',
         },
@@ -115,7 +116,8 @@ export const TRANSLATIONS = {
         projects: {
             headline: 'Meine Projekte',
             joinDescription: 'Task-Manager nach dem Kanban-System. Erstelle und organisiere Aufgaben per Drag-and-drop, weise Nutzer und Kategorien zu.',
-            videoflixDescription: 'Video-Streaming-Plattform mit Benutzeranmeldung, automatisierter Videoverarbeitung und HLS-Streaming in mehreren Auflösungen.',
+            kanmindDescription: 'Eine Kanban-basierte Anwendung zur Aufgaben- und Projektverwaltung mit Benutzeranmeldung, Boards, Aufgabenverteilung, Reviewern und Kommentaren.',
+            liveDemo: 'Live-Demo',
             polloLocoDescription: 'Renne, springe und kämpfe gegen das verrückte Oberhuhn und seine kleine Hühner-Armee. Für jeden Treffer verdienst du Münzen, mit denen du Salsa-Flaschen als Munition kaufen kannst.',
             quizzyDescription: 'Erstelle Multiple-Choice-Quizze aus YouTube-Videos. Whisper transkribiert den Ton, Gemini generiert daraus die Fragen.',
         },
