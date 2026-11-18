@@ -19,7 +19,7 @@
                     <h5>{{ translate.t().projects.joinDescription }}</h5>
                     <div class="project-button-container">
                         <a class="git-hub-button" href="https://github.com/AkviS24/join" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <button class="live-test-button">{{ translate.t().projects.liveDemo }}</button>
+                        <button class="live-test-button">Live Test</button>
                     </div>
                 </article>
             </article>
@@ -40,7 +40,7 @@
                     <h5>{{ translate.t().projects.kanmindDescription }}</h5>
                     <div class="project-button-container">
                         <a class="git-hub-button" href="https://github.com/AkviS24/KanMind" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <button class="live-test-button">Live Test</button>
+                        <button class="live-test-button" (click)="openKanMindDemo()" [disabled]="isCheckingKanMindAccess()">{{ translate.t().projects.liveDemo }}</button>
                     </div>
                 </article>
             </article>
@@ -89,3 +89,21 @@
         </article>
     </section>
 </section>
+
+@if (showKanMindAccessDialog()) {
+    <div class="kanmind-access-overlay" (click)="closeKanMindAccessDialog()">
+        <section class="kanmind-access-dialog" role="dialog" aria-modal="true" aria-labelledby="kanmind-access-title" (click)="$event.stopPropagation()">
+            <a class="kanmind-access-domain" href="https://ak-coding.de">ak-coding.de</a>
+            <button type="button" class="kanmind-access-close" [attr.aria-label]="translate.t().projects.closeDialog" (click)="closeKanMindAccessDialog()">&times;</button>
+            <div class="kanmind-access-header">
+                <span class="kanmind-access-logo">&lt;AK&gt;</span>
+                <h2 id="kanmind-access-title">{{ translate.t().projects.kanmindAccessTitle }}</h2>
+            </div>
+            <p class="kanmind-access-message">{{ translate.t().projects.kanmindAccessMessage }}</p>
+            <div class="kanmind-access-actions">
+                <button type="button" class="kanmind-access-action" (click)="openPortfolioLogin()">{{ translate.t().auth.login }}</button>
+                <button type="button" class="kanmind-access-action" (click)="openPortfolioRegistration()">{{ translate.t().auth.register }}</button>
+            </div>
+        </section>
+    </div>
+}
