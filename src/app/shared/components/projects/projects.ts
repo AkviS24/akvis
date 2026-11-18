@@ -3,9 +3,9 @@ import { Component, inject, signal } from '@angular/core';
 
 import {
   DemoLaunchService,
-  DemoProject,
   PortfolioAuthenticationRequired,
 } from '../../services/demo-launch';
+import type { DemoProject } from '../../services/demo-launch';
 import { AuthDialog as AuthDialogService } from '../../services/auth-dialog';
 import { StatusDialog as StatusDialogService } from '../../services/status-dialog';
 import { TranslationService } from '../../services/translation';
@@ -43,7 +43,10 @@ export class Projects {
       return;
     }
 
-    const message = error instanceof HttpErrorResponse && error.status === 403
+    const isHandlerDenial = error instanceof HttpErrorResponse
+      && error.status === 403
+      && error.url?.includes('/permission-api/');
+    const message = isHandlerDenial
       ? this.translate.t().projects.demoAccessDenied
       : error instanceof HttpErrorResponse && error.status === 503
         ? this.translate.t().projects.demoUnavailable
