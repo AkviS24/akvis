@@ -1,8 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
-import { finalize, switchMap } from 'rxjs';
 
-import { AuthService } from '../../services/auth';
+import {
+  DemoLaunchService,
+  DemoProject,
+  PortfolioAuthenticationRequired,
+} from '../../services/demo-launch';
 import { AuthDialog as AuthDialogService } from '../../services/auth-dialog';
 import { StatusDialog as StatusDialogService } from '../../services/status-dialog';
 import { TranslationService } from '../../services/translation';
@@ -15,46 +18,51 @@ import { TranslationService } from '../../services/translation';
 })
 export class Projects {
   translate = inject(TranslationService);
-  private auth = inject(AuthService);
+  private demoLaunch = inject(DemoLaunchService);
   private authDialog = inject(AuthDialogService);
   private statusDialog = inject(StatusDialogService);
 
-  isCheckingKanMindAccess = signal(false);
-  showKanMindAccessDialog = signal(false);
+  isLaunchingDemo = signal(false);
+  showDemoAccessDialog = signal(false);
 
-  openKanMindDemo(): void {
-    if (this.isCheckingKanMindAccess()) return;
+  /** Check Portfolio authentication and launch the selected protected demo. */
+  openDemo(project: DemoProject): void {
+    if (this.isLaunchingDemo()) return;
 
-    this.isCheckingKanMindAccess.set(true);
-    this.auth.getCsrfCookie().pipe(
-      switchMap(() => this.auth.refresh()),
-      finalize(() => this.isCheckingKanMindAccess.set(false))
-    ).subscribe({
-      next: () => window.location.assign('https://ak-coding.de/kanmind/'),
-      error: (error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          this.showKanMindAccessDialog.set(true);
-          return;
-        }
-
-        this.statusDialog.showError(
-          this.translate.t().projects.kanmindAccessCheckFailed
-        );
-      },
-    });
+    this.isLaunchingDemo.set(true);
+    this.demoLaunch.launch(project)
+      .then((url) => window.location.assign(url))
+      .catch((error: unknown) => this.handleDemoError(error))
+      .finally(() => this.isLaunchingDemo.set(false));
   }
 
-  closeKanMindAccessDialog(): void {
-    this.showKanMindAccessDialog.set(false);
+  /** Show the special access dialog only when Portfolio authentication fails. */
+  private handleDemoError(error: unknown): void {
+    if (error instanceof PortfolioAuthenticationRequired) {
+      this.showDemoAccessDialog.set(true);
+      return;
+    }
+
+    const message = error instanceof HttpErrorResponse && error.status === 403
+      ? this.translate.t().projects.demoAccessDenied
+      : error instanceof HttpErrorResponse && error.status === 503
+        ? this.translate.t().projects.demoUnavailable
+        : this.translate.t().projects.demoLaunchFailed;
+
+    this.statusDialog.showError(message);
+  }
+
+  closeDemoAccessDialog(): void {
+    this.showDemoAccessDialog.set(false);
   }
 
   openPortfolioLogin(): void {
-    this.closeKanMindAccessDialog();
+    this.closeDemoAccessDialog();
     this.authDialog.openLogin();
   }
 
   openPortfolioRegistration(): void {
-    this.closeKanMindAccessDialog();
+    this.closeDemoAccessDialog();
     this.authDialog.openLogin();
     this.authDialog.openRegister();
   }
