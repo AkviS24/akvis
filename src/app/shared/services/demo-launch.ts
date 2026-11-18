@@ -72,15 +72,25 @@ export class DemoLaunchService {
   }
 
   private async waitForReady(statusPath: string): Promise<DemoStatusResponse> {
-    const statusUrl = new URL(
+    const statusTarget = new URL(
       statusPath,
       window.location.origin + this.apiUrl,
-    ).toString();
+    );
+    const expectedStatusPath = new URL(
+      'status/',
+      window.location.origin + this.apiUrl,
+    ).pathname;
+    if (
+      statusTarget.origin !== window.location.origin ||
+      statusTarget.pathname !== expectedStatusPath
+    ) {
+      throw new Error('The Permission Handler returned an invalid status URL.');
+    }
 
     return firstValueFrom(
       timer(0, 2000).pipe(
         switchMap(() =>
-          this.http.get<DemoStatusResponse>(statusUrl, {
+          this.http.get<DemoStatusResponse>(statusTarget.toString(), {
             withCredentials: true,
           }),
         ),
