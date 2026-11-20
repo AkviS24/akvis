@@ -52,7 +52,10 @@ export const TRANSLATIONS = {
         },
         contact: {
             headline: 'Contact me',
-            intro: 'Encourage people to contact you and describe what role you are interested in. Express interest in contributing to a new project.',
+            intro: 'Do you have a project idea or would you like to discuss a possible collaboration? I’d be happy to hear from you and am open to exciting projects, new challenges, and opportunities to join a development team.',
+            formLabel: 'Contact form',
+            privacyConsent: 'I agree to the processing of my data as described in the privacy policy.',
+            backToTop: 'Back to the top',
             emailLabel: 'E-mail: ',
             telLabel: 'Tel: ',
             namePlaceholder: 'Your Name',
@@ -144,7 +147,10 @@ export const TRANSLATIONS = {
         },
         contact: {
             headline: 'Kontaktiere mich',
-            intro: 'Ermutige Leute, dich zu kontaktieren, und beschreibe, an welcher Rolle du interessiert bist. Zeige Interesse, an einem neuen Projekt mitzuwirken.',
+            intro: 'Du hast eine Projektidee oder möchtest dich über eine mögliche Zusammenarbeit austauschen? Ich freue mich über deine Nachricht und bin offen für spannende Projekte, neue Herausforderungen und den Einstieg in ein Entwicklerteam.',
+            formLabel: 'Kontaktformular',
+            privacyConsent: 'Ich stimme der Verarbeitung meiner Daten gemäß der Datenschutzerklärung zu.',
+            backToTop: 'Zurück nach oben',
             emailLabel: 'E-Mail: ',
             telLabel: 'Tel.: ',
             namePlaceholder: 'Dein Name',
