@@ -53,15 +53,9 @@ Create the production build:
 npm run build
 ```
 
-Run the configured unit-test runner:
-
-```bash
-npm test
-```
+The repository currently has no configured Angular test target and no end-to-end test framework. The `test` npm script is therefore not yet usable; the automated GitHub Actions check currently verifies dependency installation and the production build.
 
 The repository's GitHub Actions workflow installs dependencies with `npm ci` and runs the production build for pushes to `main`, `feature/**` and `deploy/**`, and pull requests targeting `main`.
-
-No end-to-end test framework is currently configured.
 
 ## Application routes
 
