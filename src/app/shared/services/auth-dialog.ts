@@ -18,6 +18,27 @@ export class AuthDialog {
   demoProgress = signal<DemoProgress | null>(null);
 
   private animationTimeout?: ReturnType<typeof setTimeout>;
+  private loginSuccessHandler?: () => void;
+  private closeHandler?: () => void;
+
+  /** Register the one-time action to resume after a successful login. */
+  setLoginSuccessHandler(handler?: () => void): void {
+    this.loginSuccessHandler = handler;
+  }
+
+  /** Register cleanup for a demo dialog closed while it is loading. */
+  setCloseHandler(handler?: () => void): void {
+    this.closeHandler = handler;
+  }
+
+  /** Run the pending post-login action and report whether it handled the login. */
+  notifyLoginSuccess(): boolean {
+    if (!this.loginSuccessHandler) return false;
+    const handler = this.loginSuccessHandler;
+    this.loginSuccessHandler = undefined;
+    handler();
+    return true;
+  }
 
   openLogin(): void {
     this.clearAnimationTimeout();
@@ -60,6 +81,9 @@ export class AuthDialog {
 
   close(): void {
     if (!this.isOpen() || this.isClosing()) return;
+    this.closeHandler?.();
+    this.closeHandler = undefined;
+    this.loginSuccessHandler = undefined;
 
     this.isClosing.set(true);
     this.animationTimeout = setTimeout(() => {
