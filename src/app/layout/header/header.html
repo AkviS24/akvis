@@ -8,17 +8,17 @@
             <a class="nav-link" [routerLink]="['/']" fragment="contact-component-anchor" (click)="scrollToElement('contact-component-anchor', $event)">{{ translate.t().nav.contact }}</a>
             <a class="nav-link" href="#" (click)="openLogin($event)">{{ translate.t().nav.login }}</a>
             <div class="lang-buttons mobile-lang">
-                <button class="lang-button" [class.active]="translate.lang() === 'de'" (click)="setLang('de')" aria-label="Auf Deutsch wechseln"><h6>DE</h6></button>
+                <button type="button" class="lang-button" [class.active]="translate.lang() === 'de'" (click)="setLang('de')" aria-label="Auf Deutsch wechseln"><h6>DE</h6></button>
                 |
-                <button class="lang-button" [class.active]="translate.lang() === 'en'" (click)="setLang('en')" aria-label="Switch to English"><h6>EN</h6></button>
+                <button type="button" class="lang-button" [class.active]="translate.lang() === 'en'" (click)="setLang('en')" aria-label="Switch to English"><h6>EN</h6></button>
             </div>
         </div>
     </nav>
     <div class="header-right">
         <div class="lang-buttons">
-            <button class="lang-button" [class.active]="translate.lang() === 'de'" (click)="setLang('de')" aria-label="Auf Deutsch wechseln"><h6>DE</h6></button>
+            <button type="button" class="lang-button" [class.active]="translate.lang() === 'de'" (click)="setLang('de')" aria-label="Auf Deutsch wechseln"><h6>DE</h6></button>
             |
-            <button class="lang-button" [class.active]="translate.lang() === 'en'" (click)="setLang('en')" aria-label="Switch to English"><h6>EN</h6></button>
+            <button type="button" class="lang-button" [class.active]="translate.lang() === 'en'" (click)="setLang('en')" aria-label="Switch to English"><h6>EN</h6></button>
         </div>
         <button type="button" class="burger" [class.open]="menuOpen" (click)="toggleMenu()" aria-label="Toggle menu" [attr.aria-expanded]="menuOpen" aria-controls="primary-navigation">
             <span></span>
