@@ -1,7 +1,7 @@
 @if (authDialog.isOpen()) {
 <div class="auth-overlay" [class.closing]="authDialog.isClosing()" (click)="authDialog.close()">
   <section class="auth-dialog" [class.closing]="authDialog.isClosing()" role="dialog" aria-modal="true"
-    [attr.aria-label]="translate.t().auth.login" aria-describedby="auth-dialog-description" (click)="$event.stopPropagation()">
+    [attr.aria-label]="authDialog.demoProgress() ? translate.t().projects.demoStarting : authDialog.registrationComplete() ? translate.t().auth.activationEmailSentTitle : isForgotPassword ? translate.t().auth.forgotPassword : authDialog.mode() === 'login' ? translate.t().auth.login : translate.t().auth.register" (click)="$event.stopPropagation()">
     @if (authDialog.demoProgress(); as progress) {
     <div class="demo-progress" role="status" aria-live="polite">
       <div class="demo-spinner" aria-hidden="true"></div>
@@ -61,7 +61,7 @@
     </p>
     } @else if (authDialog.mode() === 'login') {
     <form class="auth-form" (submit)="$event.preventDefault(); login(email.value, password.value)">
-      <input #email type="email" name="email" [attr.aria-label]="translate.t().auth.email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
+      <input #email type="email" name="email" [attr.aria-label]="translate.t().auth.email" [attr.aria-label]="translate.t().auth.email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
 
       <input #password type="password" name="password" [attr.aria-label]="translate.t().auth.password" [placeholder]="translate.t().auth.password"
         autocomplete="current-password" required />
@@ -90,7 +90,7 @@
       <input #username type="text" name="username" [attr.aria-label]="translate.t().auth.username" [placeholder]="translate.t().auth.username" autocomplete="username"
         required />
 
-      <input #password type="password" name="password" [placeholder]="translate.t().auth.password"
+      <input #password type="password" name="password" [attr.aria-label]="translate.t().auth.password" [placeholder]="translate.t().auth.password"
         autocomplete="new-password" required />
 
       <input #passwordConfirm type="password" name="passwordConfirm" [attr.aria-label]="translate.t().auth.passwordConfirm" [placeholder]="translate.t().auth.passwordConfirm"
