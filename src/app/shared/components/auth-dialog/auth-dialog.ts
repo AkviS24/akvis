@@ -65,7 +65,7 @@ export class AuthDialog {
     ).subscribe({
       next: (response) => {
         this.statusDialog.showSuccess(response.detail);
-        this.authDialog.close();
+        if (!this.authDialog.notifyLoginSuccess()) this.authDialog.close();
       },
       error: (error: HttpErrorResponse) => {
         this.statusDialog.showError(this.getErrorMessage(error, 'login'));
