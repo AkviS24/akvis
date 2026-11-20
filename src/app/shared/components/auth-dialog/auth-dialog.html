@@ -61,7 +61,7 @@
     </p>
     } @else if (authDialog.mode() === 'login') {
     <form class="auth-form" (submit)="$event.preventDefault(); login(email.value, password.value)">
-      <input #email type="email" name="email" [attr.aria-label]="translate.t().auth.email" [attr.aria-label]="translate.t().auth.email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
+      <input #email type="email" name="email" [attr.aria-label]="translate.t().auth.email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
 
       <input #password type="password" name="password" [attr.aria-label]="translate.t().auth.password" [placeholder]="translate.t().auth.password"
         autocomplete="current-password" required />
@@ -85,7 +85,7 @@
     } @else {
     <form class="auth-form"
       (submit)="$event.preventDefault(); register(email.value, username.value, password.value, passwordConfirm.value)">
-      <input #email type="email" name="email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
+      <input #email type="email" name="email" [attr.aria-label]="translate.t().auth.email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
 
       <input #username type="text" name="username" [attr.aria-label]="translate.t().auth.username" [placeholder]="translate.t().auth.username" autocomplete="username"
         required />
