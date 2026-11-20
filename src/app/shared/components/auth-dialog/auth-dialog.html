@@ -1,7 +1,7 @@
 @if (authDialog.isOpen()) {
 <div class="auth-overlay" [class.closing]="authDialog.isClosing()" (click)="authDialog.close()">
   <section class="auth-dialog" [class.closing]="authDialog.isClosing()" role="dialog" aria-modal="true"
-    [attr.aria-label]="translate.t().auth.login" (click)="$event.stopPropagation()">
+    [attr.aria-label]="translate.t().auth.login" aria-describedby="auth-dialog-description" (click)="$event.stopPropagation()">
     @if (authDialog.demoProgress(); as progress) {
     <div class="demo-progress" role="status" aria-live="polite">
       <div class="demo-spinner" aria-hidden="true"></div>
@@ -47,8 +47,8 @@
 
     @if (isForgotPassword) {
     <form class="auth-form" (submit)="$event.preventDefault(); requestPasswordReset(resetEmail.value)">
-      <p class="auth-description">{{ translate.t().auth.forgotPasswordMessage }}</p>
-      <input #resetEmail type="email" name="resetEmail" [placeholder]="translate.t().auth.email"
+      <p class="auth-description" id="auth-dialog-description">{{ translate.t().auth.forgotPasswordMessage }}</p>
+      <input #resetEmail type="email" name="resetEmail" [attr.aria-label]="translate.t().auth.email" [placeholder]="translate.t().auth.email"
         autocomplete="email" required />
       <button type="submit" class="auth-submit" [disabled]="isSubmitting">
         {{ translate.t().auth.sendResetLink }}
@@ -61,9 +61,9 @@
     </p>
     } @else if (authDialog.mode() === 'login') {
     <form class="auth-form" (submit)="$event.preventDefault(); login(email.value, password.value)">
-      <input #email type="email" name="email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
+      <input #email type="email" name="email" [attr.aria-label]="translate.t().auth.email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
 
-      <input #password type="password" name="password" [placeholder]="translate.t().auth.password"
+      <input #password type="password" name="password" [attr.aria-label]="translate.t().auth.password" [placeholder]="translate.t().auth.password"
         autocomplete="current-password" required />
 
       <button type="submit" class="auth-submit" [disabled]="isSubmitting">
@@ -87,13 +87,13 @@
       (submit)="$event.preventDefault(); register(email.value, username.value, password.value, passwordConfirm.value)">
       <input #email type="email" name="email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
 
-      <input #username type="text" name="username" [placeholder]="translate.t().auth.username" autocomplete="username"
+      <input #username type="text" name="username" [attr.aria-label]="translate.t().auth.username" [placeholder]="translate.t().auth.username" autocomplete="username"
         required />
 
       <input #password type="password" name="password" [placeholder]="translate.t().auth.password"
         autocomplete="new-password" required />
 
-      <input #passwordConfirm type="password" name="passwordConfirm" [placeholder]="translate.t().auth.passwordConfirm"
+      <input #passwordConfirm type="password" name="passwordConfirm" [attr.aria-label]="translate.t().auth.passwordConfirm" [placeholder]="translate.t().auth.passwordConfirm"
         autocomplete="new-password" required />
 
       <button type="submit" class="auth-submit" [disabled]="isSubmitting">
