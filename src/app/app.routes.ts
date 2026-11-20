@@ -3,6 +3,7 @@ import { MainPage } from './shared/pages/main-page/main-page';
 import { LegalNotice } from './shared/pages/legal-notice/legal-notice';
 import { PrivacyPolicy } from './shared/pages/privacy-policy/privacy-policy';
 import { PasswordReset } from './shared/pages/password-reset/password-reset';
+import { Activation } from './shared/pages/activation/activation';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,9 @@ export const routes: Routes = [
     },
     {
         path: 'privacy-policy', component: PrivacyPolicy
+    },
+    {
+        path: 'activate/:uid/:token', component: Activation
     },
     {
         path: 'password-reset/:uid/:token', component: PasswordReset
