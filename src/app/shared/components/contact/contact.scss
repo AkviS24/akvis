@@ -112,19 +112,46 @@
     }
 
     .contact-arrow-btn {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 22px;
         width: 22px;
         height: 50px;
-        background-image: url('../../../../../public/img/Arrow_up_red.png');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
         cursor: pointer;
-        transition: all 0.3s ease-in-out;
+        transition: outline-color 0.3s ease-in-out;
+
+        .contact-arrow-icon {
+            position: relative;
+            display: block;
+            width: 22px;
+            height: 50px;
+        }
+
+        img {
+            position: absolute;
+            inset: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .contact-arrow-green {
+            opacity: 0;
+        }
 
         &:hover {
-            background-image: url('../../../../../public/img/Arrow_up_green.png');
             outline: solid 1px var(--mint-color);
+
+            .contact-arrow-red {
+                opacity: 0;
+            }
+
+            .contact-arrow-green {
+                opacity: 1;
+            }
         }
     }
 
