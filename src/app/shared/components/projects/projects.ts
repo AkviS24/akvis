@@ -57,7 +57,10 @@ export class Projects {
         this.authDialog.updateDemoProgress(message);
       }
     }).then((url) => {
-      if (this.demoCancelled || !this.demoWindow || this.demoWindow.closed) return;
+      if (this.demoCancelled || !this.demoWindow || this.demoWindow.closed) {
+        this.cancelPendingDemo();
+        return;
+      }
       this.pendingDemo = undefined;
       this.authDialog.setCloseHandler(undefined);
       this.authDialog.clearDemoProgress();
@@ -77,6 +80,7 @@ export class Projects {
       return;
     }
     this.closeDemoWindow();
+    if (this.authDialog.isOpen()) this.authDialog.close();
     const denied = error instanceof HttpErrorResponse
       && error.status === 403 && error.url?.includes('/permission-api/');
     const message = denied ? this.translate.t().projects.demoAccessDenied
