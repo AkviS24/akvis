@@ -1,7 +1,7 @@
 <header class="header-style">
-    <nav class="nav-bar">
+    <nav class="nav-bar" aria-label="Main navigation">
         <p>&lt;AK&gt;</p>
-        <div class="nav-links" [class.open]="menuOpen">
+        <div class="nav-links" id="primary-navigation" [class.open]="menuOpen">
             <a class="nav-link" [routerLink]="['/']" fragment="whyMe-component-anchor" (click)="scrollToElement('whyMe-component-anchor', $event)">{{ translate.t().nav.whyMe }}</a>
             <a class="nav-link" [routerLink]="['/']" fragment="skills-component-anchor" (click)="scrollToElement('skills-component-anchor', $event)">{{ translate.t().nav.skills }}</a>
             <a class="nav-link" [routerLink]="['/']" fragment="projects-component-anchor" (click)="scrollToElement('projects-component-anchor', $event)">{{ translate.t().nav.projects }}</a>
@@ -20,7 +20,7 @@
             |
             <button class="lang-button" [class.active]="translate.lang() === 'en'" (click)="setLang('en')" aria-label="Switch to English"><h6>EN</h6></button>
         </div>
-        <button class="burger" [class.open]="menuOpen" (click)="toggleMenu()" aria-label="Toggle menu">
+        <button type="button" class="burger" [class.open]="menuOpen" (click)="toggleMenu()" aria-label="Toggle menu" [attr.aria-expanded]="menuOpen" aria-controls="primary-navigation">
             <span></span>
             <span></span>
             <span></span>
