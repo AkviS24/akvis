@@ -1,7 +1,7 @@
 <section class="contact-style">
-    <section class="contact-headline">
-        <h2>{{ translate.t().contact.headline }}</h2>
-        <img src="img/ArrowContact.png" alt="Arrow in the Contact Area">
+    <section class="contact-headline" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">{{ translate.t().contact.headline }}</h2>
+        <img src="img/ArrowContact.png" alt="" aria-hidden="true">
     </section>
     <section class="contact-infos">
         <article class="contact-text">
@@ -17,23 +17,23 @@
                 <a href="tel:017682938989" class="phone-text"><span class="contact-label">{{ translate.t().contact.telLabel }}</span>0176 - 82 93 89 89</a>
             </article>
         </section>
-        <a class="contact-arrow-btn" [routerLink]="['']" fragment="hero-component-anchor"
+        <a class="contact-arrow-btn" [attr.aria-label]="translate.t().contact.backToTop" [routerLink]="['']" fragment="hero-component-anchor"
             (click)="scrollToElement('hero-component-anchor', $event)">
         </a>
     </section>
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <form [attr.aria-label]="translate.t().contact.formLabel" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
         <section class="contact-form">
             <article class="contact-form-left">
                 <div class="contact-form-left-container" (click)="$event.stopPropagation()">
                     <input type="text" formControlName="name" class="contact-form-left-container"
-                        [placeholder]="translate.t().contact.namePlaceholder">
+                        [placeholder]="translate.t().contact.namePlaceholder" [attr.aria-label]="translate.t().contact.namePlaceholder">
                     @if(contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']) {
                     <span class="error-msg">{{ translate.t().contact.nameError }}</span>
                     }
                 </div>
                 <div class="contact-form-left-container" (click)="$event.stopPropagation()">
                     <input type="email" formControlName="email" class="contact-form-left-container"
-                        [placeholder]="translate.t().contact.emailPlaceholder">
+                        [placeholder]="translate.t().contact.emailPlaceholder" [attr.aria-label]="translate.t().contact.emailPlaceholder">
                     @if(contactForm.get('email')?.touched && contactForm.get('email')?.invalid) {
                     <span class="error-msg">{{ translate.t().contact.emailError }}</span>
                     }
@@ -41,7 +41,7 @@
             </article>
             <article class="contact-form-right" (click)="$event.stopPropagation()">
                 <textarea formControlName="message" class="contact-form-right" rows="4"
-                    [placeholder]="translate.t().contact.messagePlaceholder"></textarea>
+                    [placeholder]="translate.t().contact.messagePlaceholder" [attr.aria-label]="translate.t().contact.messagePlaceholder"></textarea>
                     @if(contactForm.get('message')?.touched && contactForm.get('message')?.errors?.['required']) {
                     <span class="error-msg">{{ translate.t().contact.messageError }}</span>
                     }
@@ -50,7 +50,7 @@
         <section class="contact-privacy-police">
             <article class="policy-checked-area">
                 <label class="checkbox-container" (click)="$event.stopPropagation()">
-                    <input type="checkbox" formControlName="privacy">
+                    <input type="checkbox" formControlName="privacy" [attr.aria-label]="translate.t().contact.privacyConsent">
                 </label>
                 @if (translate.lang() === 'de') {
                 <p class="policy-text">Ich habe die
