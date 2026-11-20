@@ -2,6 +2,11 @@ import { Injectable, signal } from '@angular/core';
 
 export type AuthMode = 'login' | 'register';
 
+export interface DemoProgress {
+  project: string;
+  messages: string[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,6 +15,7 @@ export class AuthDialog {
   isClosing = signal(false);
   mode = signal<AuthMode>('login');
   registrationComplete = signal(false);
+  demoProgress = signal<DemoProgress | null>(null);
 
   private animationTimeout?: ReturnType<typeof setTimeout>;
 
@@ -32,6 +38,24 @@ export class AuthDialog {
 
   showRegistrationComplete(): void {
     this.registrationComplete.set(true);
+  }
+
+  startDemoProgress(project: string, message: string): void {
+    this.demoProgress.set({ project, messages: [message] });
+    this.isOpen.set(true);
+  }
+
+  updateDemoProgress(message: string): void {
+    const progress = this.demoProgress();
+    if (!progress) return;
+    this.demoProgress.set({
+      ...progress,
+      messages: [...progress.messages, message].slice(-6),
+    });
+  }
+
+  clearDemoProgress(): void {
+    this.demoProgress.set(null);
   }
 
   close(): void {

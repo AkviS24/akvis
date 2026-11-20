@@ -34,6 +34,61 @@
     }
 }
 
+.demo-progress {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+
+    h2 {
+        margin: 0;
+        color: var(--orange-color);
+        font-size: clamp(24px, 4vw, 34px);
+        font-weight: 500;
+    }
+}
+
+.demo-spinner {
+    width: 58px;
+    height: 58px;
+    border: 5px solid rgba(2, 244, 191, 0.2);
+    border-top-color: var(--mint-color);
+    border-radius: 50%;
+    animation: demo-spin 0.9s linear infinite;
+}
+
+.demo-progress-project {
+    margin: 0;
+    color: var(--orange-color);
+}
+
+.demo-terminal {
+    width: min(620px, 100%);
+    min-height: 112px;
+    max-height: 180px;
+    overflow-y: auto;
+    padding: 16px 20px;
+    border: 1px solid rgba(2, 244, 191, 0.45);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--mint-color);
+    text-align: left;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+
+    p {
+        margin: 0;
+        overflow-wrap: anywhere;
+    }
+
+    span {
+        color: var(--orange-color);
+    }
+}
+
 .auth-domain {
     position: absolute;
     top: 24px;
@@ -168,48 +223,28 @@
     }
 }
 
-@keyframes overlay-fade-in {
-    from {
-        opacity: 0;
-    }
+@keyframes demo-spin {
+    to { transform: rotate(360deg); }
+}
 
-    to {
-        opacity: 1;
-    }
+@keyframes overlay-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes dialog-slide-in {
-    from {
-        opacity: 0;
-        transform: translateX(60px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(60px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes overlay-fade-out {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
 
 @keyframes dialog-slide-out {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    to {
-        opacity: 0;
-        transform: translateX(60px);
-    }
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(60px); }
 }
 
 @media (max-width: 600px) {
@@ -263,32 +298,19 @@
 }
 
 @keyframes dialog-slide-up {
-    from {
-        opacity: 0;
-        transform: translateY(60px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(60px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes dialog-slide-down {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(60px);
-    }
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(60px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-
     .auth-overlay,
-    .auth-dialog {
+    .auth-dialog,
+    .demo-spinner {
         animation: none;
     }
 }

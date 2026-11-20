@@ -2,7 +2,18 @@
 <div class="auth-overlay" [class.closing]="authDialog.isClosing()" (click)="authDialog.close()">
   <section class="auth-dialog" [class.closing]="authDialog.isClosing()" role="dialog" aria-modal="true"
     [attr.aria-label]="translate.t().auth.login" (click)="$event.stopPropagation()">
-    @if (authDialog.registrationComplete()) {
+    @if (authDialog.demoProgress(); as progress) {
+    <div class="demo-progress" role="status" aria-live="polite">
+      <div class="demo-spinner" aria-hidden="true"></div>
+      <h2>{{ translate.t().projects.demoStarting }}</h2>
+      <p class="demo-progress-project">{{ progress.project }}</p>
+      <div class="demo-terminal" aria-label="Demo-Startstatus">
+        @for (message of progress.messages; track $index) {
+        <p><span aria-hidden="true">&gt;</span> {{ message }}</p>
+        }
+      </div>
+    </div>
+    } @else if (authDialog.registrationComplete()) {
     <app-registration-confirmation />
     } @else {
     <a class="auth-domain" href="https://www.ak-coding.de">
