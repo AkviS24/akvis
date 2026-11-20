@@ -37,10 +37,9 @@ export class DemoLaunchService {
 
   /** Authenticate, authorize and poll the handler before returning a safe redirect. */
   async launch(project: DemoProject, onProgress?: (message: string) => void): Promise<string> {
-    onProgress?.('Requesting CSRF protection…');
     await firstValueFrom(this.auth.getCsrfCookie());
-    onProgress?.('Checking portfolio session…');
     await this.ensurePortfolioSession();
+    onProgress?.('Portfolio session verified. Requesting authorization…');
     onProgress?.('Requesting short-lived authorization assertion…');
     const { assertion } = await firstValueFrom(
       this.auth.createDemoAssertion(project),
