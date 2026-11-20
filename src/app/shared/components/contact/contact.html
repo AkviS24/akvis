@@ -25,14 +25,14 @@
         <section class="contact-form">
             <article class="contact-form-left">
                 <div class="contact-form-left-container" (click)="$event.stopPropagation()">
-                    <input type="text" formControlName="name" class="contact-form-left-container"
+                    <input type="text" id="contact-name" formControlName="name" class="contact-form-left-container" [attr.aria-invalid]="contactForm.get('name')?.touched && contactForm.get('name')?.invalid ? 'true' : 'false'"
                         [placeholder]="translate.t().contact.namePlaceholder" [attr.aria-label]="translate.t().contact.namePlaceholder">
                     @if(contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']) {
                     <span class="error-msg">{{ translate.t().contact.nameError }}</span>
                     }
                 </div>
                 <div class="contact-form-left-container" (click)="$event.stopPropagation()">
-                    <input type="email" formControlName="email" class="contact-form-left-container"
+                    <input type="email" id="contact-email" formControlName="email" class="contact-form-left-container" [attr.aria-invalid]="contactForm.get('email')?.touched && contactForm.get('email')?.invalid ? 'true' : 'false'"
                         [placeholder]="translate.t().contact.emailPlaceholder" [attr.aria-label]="translate.t().contact.emailPlaceholder">
                     @if(contactForm.get('email')?.touched && contactForm.get('email')?.invalid) {
                     <span class="error-msg">{{ translate.t().contact.emailError }}</span>
@@ -40,7 +40,7 @@
                 </div>
             </article>
             <article class="contact-form-right" (click)="$event.stopPropagation()">
-                <textarea formControlName="message" class="contact-form-right" rows="4"
+                <textarea id="contact-message" formControlName="message" class="contact-form-right" rows="4" [attr.aria-invalid]="contactForm.get('message')?.touched && contactForm.get('message')?.invalid ? 'true' : 'false'"
                     [placeholder]="translate.t().contact.messagePlaceholder" [attr.aria-label]="translate.t().contact.messagePlaceholder"></textarea>
                     @if(contactForm.get('message')?.touched && contactForm.get('message')?.errors?.['required']) {
                     <span class="error-msg">{{ translate.t().contact.messageError }}</span>
@@ -50,10 +50,10 @@
         <section class="contact-privacy-police">
             <article class="policy-checked-area">
                 <label class="checkbox-container" (click)="$event.stopPropagation()">
-                    <input type="checkbox" formControlName="privacy" [attr.aria-label]="translate.t().contact.privacyConsent">
+                    <input type="checkbox" id="privacy-consent" formControlName="privacy" [attr.aria-describedby]="'privacy-consent-description'" [attr.aria-label]="translate.t().contact.privacyConsent">
                 </label>
                 @if (translate.lang() === 'de') {
-                <p class="policy-text">Ich habe die
+                <p class="policy-text" id="privacy-consent-description">Ich habe die
                     <a class="privacy-policy-link" [routerLink]="['/privacy-policy']">Datenschutzerklärung</a>
                     gelesen und stimme der Verarbeitung meiner Daten wie beschrieben zu.</p>
                 } @else {
