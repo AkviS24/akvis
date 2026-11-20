@@ -19,6 +19,10 @@
         </section>
         <a class="contact-arrow-btn" [attr.aria-label]="translate.t().contact.backToTop" [routerLink]="['']" fragment="hero-component-anchor"
             (click)="scrollToElement('hero-component-anchor', $event)">
+            <span class="contact-arrow-icon" aria-hidden="true">
+                <img class="contact-arrow-red" src="img/Arrow_up_red.png" alt="">
+                <img class="contact-arrow-green" src="img/Arrow_up_green.png" alt="">
+            </span>
         </a>
     </section>
     <form [attr.aria-label]="translate.t().contact.formLabel" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
