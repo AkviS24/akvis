@@ -73,6 +73,29 @@ export class AuthDialog {
     });
   }
 
+  /** Confirm a password reset using the token held by the shared dialog. */
+  confirmPasswordReset(password: string, passwordConfirm: string): void {
+    const reset = this.authDialog.passwordReset();
+    if (!reset || password !== passwordConfirm) {
+      this.statusDialog.showError(this.translate.t().auth.passwordMismatch);
+      return;
+    }
+    this.isSubmitting = true;
+    this.auth.getCsrfCookie().pipe(
+      switchMap(() => this.auth.confirmPasswordReset({ ...reset, password, password_confirm: passwordConfirm })),
+      finalize(() => this.isSubmitting = false),
+    ).subscribe({
+      next: () => this.authDialog.showPasswordResetComplete(),
+      error: () => this.statusDialog.showError(this.translate.t().auth.passwordResetFailed),
+    });
+  }
+
+  /** Return to the login form after the password was reset successfully. */
+  finishPasswordReset(): void {
+    this.authDialog.openLogin();
+    this.statusDialog.showSuccess(this.translate.t().auth.passwordResetSuccess);
+  }
+
   /** Register a new account and show the in-dialog confirmation on success. */
   register(
     email: string,
