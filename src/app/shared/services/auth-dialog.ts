@@ -16,6 +16,9 @@ export class AuthDialog {
   mode = signal<AuthMode>('login');
   registrationComplete = signal(false);
   demoProgress = signal<DemoProgress | null>(null);
+  passwordReset = signal<{ uid: string; token: string } | null>(null);
+  passwordResetComplete = signal(false);
+  activationResult = signal<boolean | null>(null);
 
   private animationTimeout?: ReturnType<typeof setTimeout>;
   private loginSuccessHandler?: () => void;
@@ -45,11 +48,35 @@ export class AuthDialog {
     this.isClosing.set(false);
     this.mode.set('login');
     this.registrationComplete.set(false);
+    this.passwordReset.set(null);
+    this.passwordResetComplete.set(false);
+    this.activationResult.set(null);
     this.isOpen.set(true);
+  }
+
+  /** Open the shared dialog with a password-reset token from the email link. */
+  openPasswordReset(uid: string, token: string): void {
+    this.openLogin();
+    this.passwordReset.set({ uid, token });
+  }
+
+  /** Show the result of an email activation in the shared dialog. */
+  openActivationResult(success: boolean): void {
+    this.openLogin();
+    this.activationResult.set(success);
+  }
+
+  /** Mark the password-reset confirmation as complete inside the dialog. */
+  showPasswordResetComplete(): void {
+    this.passwordResetComplete.set(true);
+    this.passwordReset.set(null);
   }
 
   openRegister(): void {
     this.registrationComplete.set(false);
+    this.passwordReset.set(null);
+    this.passwordResetComplete.set(false);
+    this.activationResult.set(null);
     this.mode.set('register');
   }
 
