@@ -107,6 +107,10 @@ The repository does not currently define an independent production deployment co
 
 Templates use semantic landmarks, meaningful image alternatives, accessible names for interactive controls and dialog/status semantics where needed. Accessibility should be checked manually with keyboard navigation and a screen reader in addition to the automated build.
 
+## Collaboration rules
+
+The shared technical working agreement is maintained in [AkviS24/co-rules](https://github.com/AkviS24/co-rules/blob/main/ZUSAMMENARBEITSREGELN.md). Read it before making technical changes.
+
 ## License
 
 Personal portfolio project. No open-source license is currently declared.
