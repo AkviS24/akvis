@@ -20,7 +20,7 @@
         </div>
     </section>
     <section class="skills-cta">
-        <img class="skills-cta-arrow" src="img/arrow_lets_talk.svg" alt="Arrow">
+        <img class="skills-cta-arrow" src="img/arrow_lets_talk.svg" alt="" aria-hidden="true">
         <p>{{ translate.t().skills.ctaText }}</p>
         <a class="lets-talk-btn" [routerLink]="['']" fragment="contact-component-anchor"
             (click)="scrollToElement('contact-component-anchor', $event)">{{ translate.t().skills.letsTalk }}</a>
