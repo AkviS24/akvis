@@ -70,7 +70,8 @@ No end-to-end test framework is currently configured.
 | `/` | Portfolio homepage |
 | `/legal-notice` | Legal notice |
 | `/privacy-policy` | Privacy policy |
-| `/password-reset/:uid/:token` | Password-reset confirmation |
+| `/activate/:uid/:token` | Account activation from the email link (confirmation in the shared authentication dialog) |
+| `/password-reset/:uid/:token` | Password-reset confirmation in the shared authentication dialog |
 
 The language preference is stored in browser local storage under `portfolio-lang`.
 
