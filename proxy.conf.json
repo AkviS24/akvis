@@ -1,0 +1,18 @@
+{
+  "/api/**": {
+    "target": "https://192.168.178.44",
+    "secure": true,
+    "changeOrigin": false,
+    "headers": {
+      "Host": "ak-coding.de"
+    }
+  },
+  "/permission-api/**": {
+    "target": "https://192.168.178.44",
+    "secure": true,
+    "changeOrigin": false,
+    "headers": {
+      "Host": "ak-coding.de"
+    }
+  }
+}

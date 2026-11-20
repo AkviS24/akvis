@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1176" height="742" viewBox="0 0 1176 742">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#10092f"/><stop offset="1" stop-color="#26134c"/></linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e15544"/><stop offset="1" stop-color="#7f203e"/></linearGradient>
+  </defs>
+  <rect width="1176" height="742" fill="url(#bg)"/>
+  <circle cx="1000" cy="120" r="250" fill="#e15544" opacity=".12"/>
+  <text x="72" y="96" fill="#02f4bf" font-family="Arial,sans-serif" font-size="28" letter-spacing="8">VIDEO STREAMING</text>
+  <text x="72" y="176" fill="#fff" font-family="Arial,sans-serif" font-size="68" font-weight="700">VIDEOFLIX</text>
+  <rect x="72" y="226" width="1032" height="430" rx="22" fill="#0b042d" stroke="#02f4bf" stroke-opacity=".55" stroke-width="3"/>
+  <rect x="98" y="252" width="980" height="56" rx="10" fill="#1b1240"/>
+  <circle cx="130" cy="280" r="9" fill="#e15544"/><circle cx="160" cy="280" r="9" fill="#02f4bf"/>
+  <rect x="208" y="270" width="220" height="18" rx="9" fill="#6c648b"/>
+  <rect x="98" y="332" width="620" height="292" rx="14" fill="url(#screen)"/>
+  <path d="M365 425 L365 531 L462 478 Z" fill="#fff" opacity=".94"/>
+  <rect x="742" y="332" width="336" height="138" rx="12" fill="#32215d"/>
+  <rect x="766" y="356" width="288" height="16" rx="8" fill="#02f4bf" opacity=".8"/>
+  <rect x="766" y="389" width="210" height="12" rx="6" fill="#aaa2c5" opacity=".7"/>
+  <rect x="742" y="486" width="336" height="138" rx="12" fill="#32215d"/>
+  <rect x="766" y="510" width="250" height="16" rx="8" fill="#e15544"/>
+  <rect x="766" y="543" width="190" height="12" rx="6" fill="#aaa2c5" opacity=".7"/>
+  <text x="72" y="700" fill="#02f4bf" font-family="Arial,sans-serif" font-size="20" opacity=".8">TEMPORARY PROJECT PREVIEW · SCREENSHOTS TO FOLLOW</text>
+</svg>

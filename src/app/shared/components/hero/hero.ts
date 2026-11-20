@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { TranslationService } from '../../services/translation';
 
 @Component({
   selector: 'app-hero',
@@ -8,6 +9,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './hero.scss',
 })
 export class Hero {
+  translate = inject(TranslationService);
+
   scrollToElement(id: string, event: Event): void {
   event.preventDefault();
   const element = document.getElementById(id);

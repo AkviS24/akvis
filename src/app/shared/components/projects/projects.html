@@ -1,6 +1,6 @@
 <section class="projects-style">
     <article class="headline-projects">
-        <h2>My Projects</h2>
+        <h2>{{ translate.t().projects.headline }}</h2>
     </article>
     <div class="spacer"></div>
     <section class="projects-container">
@@ -12,61 +12,98 @@
                         <h3>Join</h3>
                     </div>
                     <div class="project-skills-headline">
-                        <h5>Angular | TypeScript | HTML | CSS | Firebase </h5>
+                        <h5>Angular | TypeScript | HTML | CSS | Firebase</h5>
                     </div>
                 </article>
                 <article class="bottom-layout">
-                    <h5>Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories. </h5>
+                    <h5>{{ translate.t().projects.joinDescription }}</h5>
                     <div class="project-button-container">
-                        <button class="git-hub-button">GitHub</button>
-                        <button class="live-test-button">Live Test</button>
+                        <a class="git-hub-button" href="https://github.com/AkviS24/join" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <button type="button" class="live-test-button" (click)="openDemo('join')" [disabled]="isLaunchingDemo()">{{ isLaunchingDemo() ? translate.t().projects.demoStarting : translate.t().projects.liveDemo }}</button>
                     </div>
                 </article>
             </article>
         </article>
         <div class="spacer"></div>
         <article class="projects --second-element">
-            <img class="project-image" src="img/Pollo loco.png" alt="Pollo Loco Canvas game">
+            <img class="project-image" src="img/kanmind-dashboard.png" alt="KanMind task management dashboard">
             <article class="project-info-left">
                 <article class="top-layout">
                     <div class="project-headline-container">
-                        <h3>Pollo Loco</h3>
+                        <h3>KanMind</h3>
                     </div>
                     <div class="project-skills-headline">
-                        <h5>Canvas HTML | JavaScript | CSS</h5>
+                        <h5>Django | Python | Django REST Framework | SQLite | JavaScript | HTML | CSS</h5>
                     </div>
                 </article>
                 <article class="bottom-layout">
-                    <h5>Jump, run and fight against the Crazy Main Chicken and his little Army of Chickens. For every Kill or Hit to the Main Chicken, you will earn Coins where you can buy Salsa Bottles as Ammunition to Use as Weapons.</h5>
+                    <h5>{{ translate.t().projects.kanmindDescription }}</h5>
                     <div class="project-button-container">
-                        <button class="git-hub-button">GitHub</button>
-                        <button class="live-test-button">Live Test</button>
+                        <a class="git-hub-button" href="https://github.com/AkviS24/KanMind" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <button type="button" class="live-test-button" (click)="openDemo('kanmind')" [disabled]="isLaunchingDemo()">{{ isLaunchingDemo() ? translate.t().projects.demoStarting : translate.t().projects.liveDemo }}</button>
                     </div>
                 </article>
             </article>
         </article>
         <div class="spacer"></div>
         <article class="projects --third-element">
-            <img class="project-image" src="img/Component 1 4.png" alt="Join Kanban Board">
+            <img class="project-image" src="img/Pollo loco.png" alt="El Pollo Loco Canvas game">
             <article class="project-info-right">
-                 <article class="project-info-right">
                 <article class="top-layout">
                     <div class="project-headline-container">
-                        <h3>Join</h3>
+                        <h3>El Pollo Loco</h3>
                     </div>
                     <div class="project-skills-headline">
-                        <h5>Angular | TypeScript | HTML | CSS | Firebase </h5>
+                        <h5>Canvas | HTML | JavaScript | CSS</h5>
                     </div>
                 </article>
                 <article class="bottom-layout">
-                    <h5>Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories. </h5>
+                    <h5>{{ translate.t().projects.polloLocoDescription }}</h5>
                     <div class="project-button-container">
-                        <button class="git-hub-button">GitHub</button>
-                        <button class="live-test-button">Live Test</button>
+                        <a class="git-hub-button" href="https://github.com/AkviS24/El-Pollo-Loco" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <button type="button" class="live-test-button" (click)="openDemo('el-pollo-loco')" [disabled]="isLaunchingDemo()">{{ isLaunchingDemo() ? translate.t().projects.demoStarting : translate.t().projects.liveDemo }}</button>
                     </div>
                 </article>
             </article>
+        </article>
+        <div class="spacer"></div>
+        <article class="projects --fourth-element">
+            <img class="project-image" src="img/quizzy-placeholder.svg" alt="Quizzy AI-powered quiz application preview">
+            <article class="project-info-left">
+                <article class="top-layout">
+                    <div class="project-headline-container">
+                        <h3>Quizzy</h3>
+                    </div>
+                    <div class="project-skills-headline">
+                        <h5>Django | Python | REST API | Whisper | Gemini</h5>
+                    </div>
+                </article>
+                <article class="bottom-layout">
+                    <h5>{{ translate.t().projects.quizzyDescription }}</h5>
+                    <div class="project-button-container">
+                        <a class="git-hub-button" href="https://github.com/AkviS24/Quizzy" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <button type="button" class="live-test-button" (click)="openDemo('quizzy')" [disabled]="isLaunchingDemo()">{{ isLaunchingDemo() ? translate.t().projects.demoStarting : translate.t().projects.liveDemo }}</button>
+                    </div>
+                </article>
             </article>
         </article>
     </section>
 </section>
+
+@if (showDemoAccessDialog()) {
+    <div class="kanmind-access-overlay" (click)="closeDemoAccessDialog()">
+        <section class="kanmind-access-dialog" role="dialog" aria-modal="true" aria-labelledby="demo-access-title" (click)="$event.stopPropagation()">
+            <a class="kanmind-access-domain" href="https://ak-coding.de">ak-coding.de</a>
+            <button type="button" class="kanmind-access-close" [attr.aria-label]="translate.t().projects.closeDialog" (click)="closeDemoAccessDialog()">&times;</button>
+            <div class="kanmind-access-header">
+                <span class="kanmind-access-logo">&lt;AK&gt;</span>
+                <h2 id="demo-access-title">{{ translate.t().projects.demoAccessTitle }}</h2>
+            </div>
+            <p class="kanmind-access-message">{{ translate.t().projects.demoAccessMessage }}</p>
+            <div class="kanmind-access-actions">
+                <button type="button" class="kanmind-access-action" (click)="openPortfolioLogin()">{{ translate.t().auth.login }}</button>
+                <button type="button" class="kanmind-access-action" (click)="openPortfolioRegistration()">{{ translate.t().auth.register }}</button>
+            </div>
+        </section>
+    </div>
+}

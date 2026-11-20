@@ -1,0 +1,141 @@
+@if (authDialog.isOpen()) {
+<div class="auth-overlay" [class.closing]="authDialog.isClosing()" (click)="authDialog.close()">
+  <section class="auth-dialog" [class.closing]="authDialog.isClosing()" role="dialog" aria-modal="true"
+    [attr.aria-label]="authDialog.demoProgress() ? translate.t().projects.demoStarting : authDialog.registrationComplete() ? translate.t().auth.activationEmailSentTitle : isForgotPassword ? translate.t().auth.forgotPassword  : authDialog.passwordReset() ? translate.t().auth.resetPassword : authDialog.activationResult() !== null ? translate.t().auth.activationSuccessTitle : authDialog.mode() === 'login' ? translate.t().auth.login : translate.t().auth.register" (click)="$event.stopPropagation()">
+    @if (authDialog.demoProgress(); as progress) {
+    <div class="demo-progress" role="status" aria-live="polite">
+      <div class="demo-spinner" aria-hidden="true"></div>
+      <h2>{{ translate.t().projects.demoStarting }}</h2>
+      <p class="demo-progress-project">{{ progress.project }}</p>
+      <div class="demo-terminal" aria-label="Demo-Startstatus">
+        @for (message of progress.messages; track $index) {
+        <p><span aria-hidden="true">&gt;</span> {{ message }}</p>
+        }
+      </div>
+    </div>
+    } @else if (authDialog.registrationComplete()) {
+    <app-registration-confirmation />
+    } @else if (authDialog.passwordResetComplete()) {
+    <div class="auth-result" role="status" aria-live="polite">
+      <h2>{{ translate.t().auth.passwordResetSuccess }}</h2>
+      <button type="button" (click)="finishPasswordReset()">{{ translate.t().auth.backToLogin }}</button>
+    </div>
+    } @else if (authDialog.activationResult() !== null) {
+    <div class="auth-result" role="status" aria-live="polite">
+      @if (authDialog.activationResult()) {
+      <h2>{{ translate.t().auth.activationSuccessTitle }}</h2>
+      <p>{{ translate.t().auth.activationSuccessMessage }}</p>
+      <button type="button" (click)="authDialog.openLogin()">{{ translate.t().auth.login }}</button>
+      } @else {
+      <h2>{{ translate.t().auth.activationFailedTitle }}</h2>
+      <p>{{ translate.t().auth.activationFailedMessage }}</p>
+      <button type="button" (click)="authDialog.close()">{{ translate.t().auth.close }}</button>
+      }
+    </div>
+    } @else if (authDialog.passwordReset(); as reset) {
+    <a class="auth-domain" href="https://www.ak-coding.de">www.ak-coding.de</a>
+    <div class="auth-header">
+      <div class="auth-brand"><span class="auth-logo">&lt;AK&gt;</span><h2>{{ translate.t().auth.resetPassword }}</h2></div>
+    </div>
+    <form class="auth-form" (submit)="$event.preventDefault(); confirmPasswordReset(newPassword.value, confirmPassword.value)">
+      <input #newPassword type="password" name="newPassword" [attr.aria-label]="translate.t().auth.newPassword" [placeholder]="translate.t().auth.newPassword" autocomplete="new-password" required />
+      <input #confirmPassword type="password" name="confirmPassword" [attr.aria-label]="translate.t().auth.passwordConfirm" [placeholder]="translate.t().auth.passwordConfirm" autocomplete="new-password" required />
+      <button type="submit" class="auth-submit" [disabled]="isSubmitting">{{ translate.t().auth.resetPassword }}</button>
+    </form>
+    } @else {
+    <a class="auth-domain" href="https://www.ak-coding.de">
+      www.ak-coding.de
+    </a>
+
+    <div class="auth-header">
+      <div class="auth-brand">
+        <span class="auth-logo">&lt;AK&gt;</span>
+        <h2>
+          {{ isForgotPassword
+          ? translate.t().auth.forgotPassword
+          : authDialog.mode() === 'login'
+            ? translate.t().auth.login
+            : translate.t().auth.register }}
+        </h2>
+      </div>
+
+      <div class="auth-language">
+        <button type="button" class="lang-button" [class.active]="translate.lang() === 'de'"
+          (click)="translate.setLang('de')">
+          DE
+        </button>
+        |
+        <button type="button" class="lang-button" [class.active]="translate.lang() === 'en'"
+          (click)="translate.setLang('en')">
+          EN
+        </button>
+      </div>
+    </div>
+
+    @if (isForgotPassword) {
+    <form class="auth-form" (submit)="$event.preventDefault(); requestPasswordReset(resetEmail.value)">
+      <p class="auth-description" id="auth-dialog-description">{{ translate.t().auth.forgotPasswordMessage }}</p>
+      <input #resetEmail type="email" name="resetEmail" [attr.aria-label]="translate.t().auth.email" [placeholder]="translate.t().auth.email"
+        autocomplete="email" required />
+      <button type="submit" class="auth-submit" [disabled]="isSubmitting">
+        {{ translate.t().auth.sendResetLink }}
+      </button>
+    </form>
+    <p class="auth-switch">
+      <button type="button" (click)="backToLogin()">
+        {{ translate.t().auth.backToLogin }}
+      </button>
+    </p>
+    } @else if (authDialog.mode() === 'login') {
+    <form class="auth-form" (submit)="$event.preventDefault(); login(email.value, password.value)">
+      <input #email type="email" name="email" [attr.aria-label]="translate.t().auth.email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
+
+      <input #password type="password" name="password" [attr.aria-label]="translate.t().auth.password" [placeholder]="translate.t().auth.password"
+        autocomplete="current-password" required />
+
+      <button type="submit" class="auth-submit" [disabled]="isSubmitting">
+        {{ translate.t().auth.submit }}
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      <button type="button" (click)="showForgotPassword()">
+        {{ translate.t().auth.forgotPassword }}
+      </button>
+    </p>
+    <p class="auth-switch">
+      {{ translate.t().auth.noAccount }}
+      <button type="button" (click)="authDialog.openRegister()">
+        {{ translate.t().auth.register }}
+      </button>
+    </p>
+    } @else {
+    <form class="auth-form"
+      (submit)="$event.preventDefault(); register(email.value, username.value, password.value, passwordConfirm.value)">
+      <input #email type="email" name="email" [attr.aria-label]="translate.t().auth.email" [placeholder]="translate.t().auth.email" autocomplete="email" required />
+
+      <input #username type="text" name="username" [attr.aria-label]="translate.t().auth.username" [placeholder]="translate.t().auth.username" autocomplete="username"
+        required />
+
+      <input #password type="password" name="password" [attr.aria-label]="translate.t().auth.password" [placeholder]="translate.t().auth.password"
+        autocomplete="new-password" required />
+
+      <input #passwordConfirm type="password" name="passwordConfirm" [attr.aria-label]="translate.t().auth.passwordConfirm" [placeholder]="translate.t().auth.passwordConfirm"
+        autocomplete="new-password" required />
+
+      <button type="submit" class="auth-submit" [disabled]="isSubmitting">
+        {{ translate.t().auth.submit }}
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      {{ translate.t().auth.hasAccount }}
+      <button type="button" (click)="authDialog.showLogin()">
+        {{ translate.t().auth.backToLogin }}
+      </button>
+    </p>
+    }
+  }
+  </section>
+</div>
+}
