@@ -94,6 +94,10 @@ export const TRANSLATIONS = {
             passwordResetSuccess: 'Your password has been reset successfully. You can now log in.',
             passwordResetFailed: 'The password could not be reset. The link may be invalid or expired.',
             passwordMismatch: 'The passwords do not match.',
+            activationSuccessTitle: 'Account activated',
+            activationSuccessMessage: 'Your account is active. You can now log in.',
+            activationFailedTitle: 'Activation failed',
+            activationFailedMessage: 'The activation link is invalid or expired. Please request a new activation email.',
         },
     },
     de: {
@@ -189,6 +193,10 @@ export const TRANSLATIONS = {
             passwordResetSuccess: 'Dein Passwort wurde zurückgesetzt. Du kannst dich jetzt anmelden.',
             passwordResetFailed: 'Das Passwort konnte nicht zurückgesetzt werden. Der Link ist möglicherweise ungültig oder abgelaufen.',
             passwordMismatch: 'Die Passwörter stimmen nicht überein.',
+            activationSuccessTitle: 'Konto aktiviert',
+            activationSuccessMessage: 'Dein Konto ist jetzt aktiv. Du kannst dich anmelden.',
+            activationFailedTitle: 'Aktivierung fehlgeschlagen',
+            activationFailedMessage: 'Der Aktivierungslink ist ungültig oder abgelaufen. Bitte fordere eine neue Aktivierungs-E-Mail an.',
         },
     },
 } as const;
