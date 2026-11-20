@@ -35,9 +35,13 @@ export class DemoLaunchService {
   private readonly auth = inject(AuthService);
   private readonly apiUrl = '/permission-api/api/demo/';
 
-  async launch(project: DemoProject): Promise<string> {
+  /** Authenticate, authorize and poll the handler before returning a safe redirect. */
+  async launch(project: DemoProject, onProgress?: (message: string) => void): Promise<string> {
+    onProgress?.('Requesting CSRF protection…');
     await firstValueFrom(this.auth.getCsrfCookie());
+    onProgress?.('Checking portfolio session…');
     await this.ensurePortfolioSession();
+    onProgress?.('Requesting short-lived authorization assertion…');
     const { assertion } = await firstValueFrom(
       this.auth.createDemoAssertion(project),
     );
@@ -48,7 +52,12 @@ export class DemoLaunchService {
         { withCredentials: true },
       ),
     );
-    const status = await this.waitForReady(launch.status_url);
+    onProgress?.('Permission Handler accepted the request. Waiting for project readiness…');
+    const status = await this.waitForReady(launch.status_url, onProgress);
+    if (status.state !== 'ready') {
+      throw new Error(`Demo launch ended with state: ${status.state}`);
+    }
+    onProgress?.('Demo is ready. Opening the project…');
     return this.getSafeRedirect(status.redirect_to);
   }
 
@@ -71,7 +80,10 @@ export class DemoLaunchService {
     }
   }
 
-  private async waitForReady(statusPath: string): Promise<DemoStatusResponse> {
+  private async waitForReady(
+    statusPath: string,
+    onProgress?: (message: string) => void,
+  ): Promise<DemoStatusResponse> {
     const statusTarget = new URL(
       statusPath,
       window.location.origin + this.apiUrl,
@@ -89,11 +101,12 @@ export class DemoLaunchService {
 
     return firstValueFrom(
       timer(0, 2000).pipe(
-        switchMap(() =>
-          this.http.get<DemoStatusResponse>(statusTarget.toString(), {
+        switchMap(() => {
+          onProgress?.('Checking project startup status…');
+          return this.http.get<DemoStatusResponse>(statusTarget.toString(), {
             withCredentials: true,
-          }),
-        ),
+          });
+        }),
         filter((status) => status.state !== 'starting'),
         take(1),
         timeout({ first: 180_000 }),
