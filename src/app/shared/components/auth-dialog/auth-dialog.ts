@@ -29,14 +29,17 @@ export class AuthDialog {
     });
   }
 
+  /** Switch the existing dialog to the password-reset request form. */
   showForgotPassword(): void {
     this.isForgotPassword = true;
   }
 
+  /** Return from the password-reset request form to login. */
   backToLogin(): void {
     this.isForgotPassword = false;
   }
 
+  /** Request a password-reset email and report the result to the user. */
   requestPasswordReset(email: string): void {
     this.isSubmitting = true;
     this.auth.getCsrfCookie().pipe(
@@ -52,6 +55,7 @@ export class AuthDialog {
     });
   }
 
+  /** Authenticate the user and close the dialog after a successful login. */
   login(email: string, password: string): void {
     this.isSubmitting = true;
 
@@ -69,6 +73,7 @@ export class AuthDialog {
     });
   }
 
+  /** Register a new account and show the in-dialog confirmation on success. */
   register(
     email: string,
     username: string,
@@ -77,8 +82,6 @@ export class AuthDialog {
   ): void {
     this.isSubmitting = true;
 
-    console.log('Registration started:', this.isSubmitting);
-
     this.auth.getCsrfCookie().pipe(
       switchMap(() => this.auth.register({
         email,
@@ -86,22 +89,16 @@ export class AuthDialog {
         password,
         password_confirm: passwordConfirm,
       })),
-      finalize(() => {
-        this.isSubmitting = false;
-        console.log('Registration finalized:', this.isSubmitting);
-      })
+      finalize(() => this.isSubmitting = false)
     ).subscribe({
-      next: (response) => {
-        console.log('REGISTRATION SUCCESS:', response);
-        this.authDialog.showRegistrationComplete();
-      },
+      next: () => this.authDialog.showRegistrationComplete(),
       error: (error: HttpErrorResponse) => {
-        console.log('REGISTRATION ERROR:', error.status, error.error);
         this.statusDialog.showError(this.getErrorMessage(error, 'register'));
       },
     });
   }
 
+  /** Resolve a backend authentication error into a localized user message. */
   private getErrorMessage(
     error: HttpErrorResponse,
     action: 'login' | 'register'
