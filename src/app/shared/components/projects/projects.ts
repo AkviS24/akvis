@@ -1,10 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 
-import {
-  DemoLaunchService,
-  PortfolioAuthenticationRequired,
-} from '../../services/demo-launch';
+import { DemoLaunchService, PortfolioAuthenticationRequired } from '../../services/demo-launch';
 import type { DemoProject } from '../../services/demo-launch';
 import { AuthDialog as AuthDialogService } from '../../services/auth-dialog';
 import { StatusDialog as StatusDialogService } from '../../services/status-dialog';
@@ -14,6 +11,7 @@ import { TranslationService } from '../../services/translation';
   selector: 'app-projects',
   imports: [],
   templateUrl: './projects.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './projects.scss',
 })
 export class Projects {
@@ -49,26 +47,29 @@ export class Projects {
   private launchDemo(project: DemoProject): void {
     this.isLaunchingDemo.set(true);
     let progressStarted = false;
-    this.demoLaunch.launch(project, (message) => {
-      if (!progressStarted) {
-        this.authDialog.startDemoProgress(project, message);
-        progressStarted = true;
-      } else {
-        this.authDialog.updateDemoProgress(message);
-      }
-    }).then((url) => {
-      if (this.demoCancelled || !this.demoWindow || this.demoWindow.closed) {
-        this.cancelPendingDemo();
-        return;
-      }
-      this.pendingDemo = undefined;
-      this.authDialog.setCloseHandler(undefined);
-      this.authDialog.clearDemoProgress();
-      this.authDialog.close();
-      this.demoWindow.location.replace(url);
-      this.demoWindow.focus();
-      this.demoWindow = null;
-    }).catch((error: unknown) => this.handleDemoError(error))
+    this.demoLaunch
+      .launch(project, (message) => {
+        if (!progressStarted) {
+          this.authDialog.startDemoProgress(project, message);
+          progressStarted = true;
+        } else {
+          this.authDialog.updateDemoProgress(message);
+        }
+      })
+      .then((url) => {
+        if (this.demoCancelled || !this.demoWindow || this.demoWindow.closed) {
+          this.cancelPendingDemo();
+          return;
+        }
+        this.pendingDemo = undefined;
+        this.authDialog.setCloseHandler(undefined);
+        this.authDialog.clearDemoProgress();
+        this.authDialog.close();
+        this.demoWindow.location.replace(url);
+        this.demoWindow.focus();
+        this.demoWindow = null;
+      })
+      .catch((error: unknown) => this.handleDemoError(error))
       .finally(() => this.isLaunchingDemo.set(false));
   }
 
@@ -81,9 +82,12 @@ export class Projects {
     }
     this.closeDemoWindow();
     if (this.authDialog.isOpen()) this.authDialog.close();
-    const denied = error instanceof HttpErrorResponse
-      && error.status === 403 && error.url?.includes('/permission-api/');
-    const message = denied ? this.translate.t().projects.demoAccessDenied
+    const denied =
+      error instanceof HttpErrorResponse &&
+      error.status === 403 &&
+      error.url?.includes('/permission-api/');
+    const message = denied
+      ? this.translate.t().projects.demoAccessDenied
       : error instanceof HttpErrorResponse && error.status === 503
         ? this.translate.t().projects.demoUnavailable
         : this.translate.t().projects.demoLaunchFailed;

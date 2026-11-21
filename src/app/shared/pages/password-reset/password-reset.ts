@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AuthDialog as AuthDialogService } from '../../services/auth-dialog';
@@ -7,6 +7,7 @@ import { AuthDialog as AuthDialogService } from '../../services/auth-dialog';
 @Component({
   selector: 'app-password-reset',
   imports: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './password-reset.html',
 })
 export class PasswordReset {

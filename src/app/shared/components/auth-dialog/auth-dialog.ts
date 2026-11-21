@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, ChangeDetectionStrategy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { finalize, switchMap } from 'rxjs';
 
@@ -12,6 +12,7 @@ import { RegistrationConfirmation } from './registration-confirmation/registrati
   selector: 'app-auth-dialog',
   imports: [RegistrationConfirmation],
   templateUrl: './auth-dialog.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './auth-dialog.scss',
 })
 export class AuthDialog {
@@ -42,35 +43,38 @@ export class AuthDialog {
   /** Request a password-reset email and report the result to the user. */
   requestPasswordReset(email: string): void {
     this.isSubmitting = true;
-    this.auth.getCsrfCookie().pipe(
-      switchMap(() => this.auth.requestPasswordReset(email)),
-      finalize(() => this.isSubmitting = false)
-    ).subscribe({
-      next: () => this.statusDialog.showSuccess(
-        this.translate.t().auth.passwordResetRequestSent
-      ),
-      error: () => this.statusDialog.showError(
-        this.translate.t().auth.passwordResetRequestFailed
-      ),
-    });
+    this.auth
+      .getCsrfCookie()
+      .pipe(
+        switchMap(() => this.auth.requestPasswordReset(email)),
+        finalize(() => (this.isSubmitting = false)),
+      )
+      .subscribe({
+        next: () => this.statusDialog.showSuccess(this.translate.t().auth.passwordResetRequestSent),
+        error: () =>
+          this.statusDialog.showError(this.translate.t().auth.passwordResetRequestFailed),
+      });
   }
 
   /** Authenticate the user and close the dialog after a successful login. */
   login(email: string, password: string): void {
     this.isSubmitting = true;
 
-    this.auth.getCsrfCookie().pipe(
-      switchMap(() => this.auth.login({ email, password })),
-      finalize(() => this.isSubmitting = false)
-    ).subscribe({
-      next: (response) => {
-        this.statusDialog.showSuccess(response.detail);
-        if (!this.authDialog.notifyLoginSuccess()) this.authDialog.close();
-      },
-      error: (error: HttpErrorResponse) => {
-        this.statusDialog.showError(this.getErrorMessage(error, 'login'));
-      },
-    });
+    this.auth
+      .getCsrfCookie()
+      .pipe(
+        switchMap(() => this.auth.login({ email, password })),
+        finalize(() => (this.isSubmitting = false)),
+      )
+      .subscribe({
+        next: (response) => {
+          this.statusDialog.showSuccess(response.detail);
+          if (!this.authDialog.notifyLoginSuccess()) this.authDialog.close();
+        },
+        error: (error: HttpErrorResponse) => {
+          this.statusDialog.showError(this.getErrorMessage(error, 'login'));
+        },
+      });
   }
 
   /** Confirm a password reset using the token held by the shared dialog. */
@@ -81,13 +85,18 @@ export class AuthDialog {
       return;
     }
     this.isSubmitting = true;
-    this.auth.getCsrfCookie().pipe(
-      switchMap(() => this.auth.confirmPasswordReset({ ...reset, password, password_confirm: passwordConfirm })),
-      finalize(() => this.isSubmitting = false),
-    ).subscribe({
-      next: () => this.authDialog.showPasswordResetComplete(),
-      error: () => this.statusDialog.showError(this.translate.t().auth.passwordResetFailed),
-    });
+    this.auth
+      .getCsrfCookie()
+      .pipe(
+        switchMap(() =>
+          this.auth.confirmPasswordReset({ ...reset, password, password_confirm: passwordConfirm }),
+        ),
+        finalize(() => (this.isSubmitting = false)),
+      )
+      .subscribe({
+        next: () => this.authDialog.showPasswordResetComplete(),
+        error: () => this.statusDialog.showError(this.translate.t().auth.passwordResetFailed),
+      });
   }
 
   /** Return to the login form after the password was reset successfully. */
@@ -97,35 +106,32 @@ export class AuthDialog {
   }
 
   /** Register a new account and show the in-dialog confirmation on success. */
-  register(
-    email: string,
-    username: string,
-    password: string,
-    passwordConfirm: string
-  ): void {
+  register(email: string, username: string, password: string, passwordConfirm: string): void {
     this.isSubmitting = true;
 
-    this.auth.getCsrfCookie().pipe(
-      switchMap(() => this.auth.register({
-        email,
-        username,
-        password,
-        password_confirm: passwordConfirm,
-      })),
-      finalize(() => this.isSubmitting = false)
-    ).subscribe({
-      next: () => this.authDialog.showRegistrationComplete(),
-      error: (error: HttpErrorResponse) => {
-        this.statusDialog.showError(this.getErrorMessage(error, 'register'));
-      },
-    });
+    this.auth
+      .getCsrfCookie()
+      .pipe(
+        switchMap(() =>
+          this.auth.register({
+            email,
+            username,
+            password,
+            password_confirm: passwordConfirm,
+          }),
+        ),
+        finalize(() => (this.isSubmitting = false)),
+      )
+      .subscribe({
+        next: () => this.authDialog.showRegistrationComplete(),
+        error: (error: HttpErrorResponse) => {
+          this.statusDialog.showError(this.getErrorMessage(error, 'register'));
+        },
+      });
   }
 
   /** Resolve a backend authentication error into a localized user message. */
-  private getErrorMessage(
-    error: HttpErrorResponse,
-    action: 'login' | 'register'
-  ): string {
+  private getErrorMessage(error: HttpErrorResponse, action: 'login' | 'register'): string {
     const response = error.error as Record<string, unknown> | null;
 
     const detail = response?.['detail'];

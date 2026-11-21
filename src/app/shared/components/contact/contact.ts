@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -9,18 +9,22 @@ import { TranslationService } from '../../services/translation';
   standalone: true,
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './contact.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact.scss',
 })
 export class Contact {
   translate = inject(TranslationService);
   contactForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+  ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       message: ['', Validators.required],
-      privacy: [false, Validators.requiredTrue]
+      privacy: [false, Validators.requiredTrue],
     });
   }
 
@@ -28,17 +32,16 @@ export class Contact {
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
 
-      this.http.post('https://formspree.io/f/xkoavznz', formData)
-        .subscribe({
-          next: (response) => {
-            alert('Vielen Dank! Deine Nachricht wurde gesendet.');
-            this.contactForm.reset();
-          },
-          error: (error) => {
-            alert('Fehler beim Senden. Bitte versuche es noch einmal.');
-            console.error('Formspree Error:', error);
-          }
-        });
+      this.http.post('https://formspree.io/f/xkoavznz', formData).subscribe({
+        next: (response) => {
+          alert('Vielen Dank! Deine Nachricht wurde gesendet.');
+          this.contactForm.reset();
+        },
+        error: (error) => {
+          alert('Fehler beim Senden. Bitte versuche es noch einmal.');
+          console.error('Formspree Error:', error);
+        },
+      });
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslationService } from '../../services/translation';
 
@@ -6,6 +6,7 @@ import { TranslationService } from '../../services/translation';
   selector: 'app-why-me',
   imports: [RouterModule],
   templateUrl: './why-me.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './why-me.scss',
 })
 export class WhyMe {

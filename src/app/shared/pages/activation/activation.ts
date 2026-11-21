@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 
@@ -9,6 +9,7 @@ import { AuthDialog as AuthDialogService } from '../../services/auth-dialog';
 @Component({
   selector: 'app-activation',
   imports: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './activation.html',
 })
 export class Activation {
@@ -23,11 +24,12 @@ export class Activation {
       this.authDialog.openActivationResult(false);
       return;
     }
-    this.auth.getCsrfCookie().pipe(
-      switchMap(() => this.auth.activate({ uid, token })),
-    ).subscribe({
-      next: () => this.authDialog.openActivationResult(true),
-      error: () => this.authDialog.openActivationResult(false),
-    });
+    this.auth
+      .getCsrfCookie()
+      .pipe(switchMap(() => this.auth.activate({ uid, token })))
+      .subscribe({
+        next: () => this.authDialog.openActivationResult(true),
+        error: () => this.authDialog.openActivationResult(false),
+      });
   }
 }

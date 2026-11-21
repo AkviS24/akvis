@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslationService } from '../../shared/services/translation';
 import { Lang } from '../../shared/services/translations';
 import { AuthDialog as AuthDialogService } from '../../shared/services/auth-dialog';
@@ -8,6 +8,7 @@ import { AuthDialog as AuthDialogService } from '../../shared/services/auth-dial
   selector: 'app-header',
   imports: [RouterLink],
   templateUrl: './header.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './header.scss',
 })
 export class Header {

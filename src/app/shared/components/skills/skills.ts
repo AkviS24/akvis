@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslationService } from '../../services/translation';
 
@@ -6,6 +6,7 @@ import { TranslationService } from '../../services/translation';
   selector: 'app-skills',
   imports: [RouterModule],
   templateUrl: './skills.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './skills.scss',
 })
 export class Skills {
